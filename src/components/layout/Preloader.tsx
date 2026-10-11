@@ -161,7 +161,7 @@ function PreloaderCurtain() {
       setVisible(false)
       // Belt and braces: drop the overlay even if the exit animation is interrupted.
       window.setTimeout(() => setGone(true), (timing.wipe + timing.blade) * 1000 + 1200)
-      // Honour deep links (games.hizarc.com/#contact, /#contact-careers) once the page is released.
+      // Honour deep links (hizarc.com/#contact, /#contact-careers) once the page is released.
       const target = resolveHashTarget(window.location.hash)
       if (target) requestAnimationFrame(() => scrollToTarget(target))
     }

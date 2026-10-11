@@ -1,5 +1,5 @@
-# Builds the site and publishes it to GitHub Pages (games.hizarc.com) on every push to main.
-# One-time setup: repo Settings → Pages → Source: "GitHub Actions", Custom domain: games.hizarc.com.
+# Builds the site and publishes it to GitHub Pages (hizarc.com) on every push to main.
+# One-time setup: repo Settings → Pages → Source: "GitHub Actions", Custom domain: hizarc.com.
 name: Deploy to GitHub Pages
 
 on:

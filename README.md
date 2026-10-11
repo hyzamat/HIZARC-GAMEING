@@ -1,6 +1,6 @@
-# Hizarc Games — games.hizarc.com
+# Hizarc Games — hizarc.com
 
-Official website of **Hizarc Games**, the game studio of [HIZARC](https://hizarc.com).
+Official website of **Hizarc Games**, the game studio of [HIZARC](https://dev.hizarc.com).
 React 19 + Vite + TypeScript + Tailwind CSS v4 + **Framer Motion**, mobile-first.
 
 ## Run it
@@ -35,28 +35,24 @@ VITE_CONTACT_ENDPOINT=https://formspree.io/f/your-id
 
 Rebuild after changing `.env`.
 
-## Deploy to games.hizarc.com
+## Deploy to hizarc.com
 
 The build output (`dist/`) is a static site, so it can be hosted anywhere.
 
-**Current setup: GitHub Pages** (same as dev.hizarc.com and depthcity.hizarc.com)
+**Current setup: GitHub Pages** (same account as dev.hizarc.com and depthcity.hizarc.com)
 - `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
-- Repo *Settings → Pages*: Source **GitHub Actions**, Custom domain **games.hizarc.com**, **Enforce HTTPS** on.
-- DNS at GoDaddy (hizarc.com): `CNAME  games  →  hyzamat.github.io`.
+- Repo *Settings → Pages*: Source **GitHub Actions**, Custom domain **hizarc.com**, **Enforce HTTPS** on.
+  `www.hizarc.com` redirects to `hizarc.com` automatically.
+- DNS at GoDaddy (hizarc.com), already in place:
+  `A  @  →  185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153` and `CNAME  www  →  hyzamat.github.io`.
 - To use a contact form endpoint, add a repo **variable** `VITE_CONTACT_ENDPOINT`
   (*Settings → Secrets and variables → Actions → Variables*), then re-run the workflow.
 
-**Option A: Vercel / Netlify / Cloudflare Pages (free)**
-1. Push this folder to a Git repo and import it (build command `npm run build`, output directory `dist`),
-   or drag and drop the `dist` folder into Netlify Drop.
-2. Add the custom domain `games.hizarc.com` in the host's dashboard.
-3. At your DNS provider for hizarc.com, add the record the host tells you to add, usually:
-   `CNAME  games  →  <your-project>.vercel.app` (or `.netlify.app` / `.pages.dev`).
+**Google search:** add `hizarc.com` as a *Domain* property in [Google Search Console](https://search.google.com/search-console),
+submit `https://hizarc.com/sitemap.xml`, then use *URL inspection → Request indexing* on `https://hizarc.com/`.
 
-**Option B: the same cPanel/hosting as hizarc.com**
-1. In cPanel → *Domains / Subdomains*, create `games.hizarc.com` (document root e.g. `public_html/games`).
-2. Run `build-website.bat`, then upload **the contents of** `dist/` into that folder.
-3. Enable SSL for the subdomain (cPanel → *SSL/TLS Status* → AutoSSL).
+**Other hosts (Vercel / Netlify / Cloudflare Pages / cPanel):** build command `npm run build`, output directory `dist`,
+add `hizarc.com` as the custom domain, and replace the A records above with the ones the host gives you.
 
 ## Structure
 

@@ -8,9 +8,9 @@
 export const site = {
   name: 'Hizarc Games',
   shortName: 'HIZARC',
-  url: 'https://games.hizarc.com',
+  url: 'https://hizarc.com',
   parentName: 'HIZARC',
-  parentUrl: 'https://hizarc.com',
+  parentUrl: 'https://dev.hizarc.com',
   tagline: 'We build worlds worth playing.',
   description:
     'Hizarc Games is the game studio of HIZARC. From Calicut, Kerala, India, we craft original games for mobile, PC, web and XR in Unity and Unreal Engine, and co-develop with brands and publishers worldwide.',

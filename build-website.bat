@@ -31,7 +31,7 @@ if errorlevel 1 (
 )
 
 echo.
-echo   Done! Upload the contents of the "dist" folder to games.hizarc.com.
+echo   Done! Upload the contents of the "dist" folder to hizarc.com.
 echo   Previewing the production build at http://localhost:4173  (Ctrl+C to stop)
 echo.
 call npm run preview -- --open

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://games.hizarc.com/sitemap.xml
+Sitemap: https://hizarc.com/sitemap.xml

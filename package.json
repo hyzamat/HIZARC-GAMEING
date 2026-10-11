@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Hizarc Games — official website (games.hizarc.com)",
+  "description": "Hizarc Games — official website (hizarc.com)",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
