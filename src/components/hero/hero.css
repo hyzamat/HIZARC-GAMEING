@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Hero + ticker keyframes.
+   Hero keyframes.
    Transform / opacity only (one exception: the headline sheen, which
    repaints a single word), so every infinite loop stays on the
    compositor and cheap on phones. Used through Tailwind arbitrary
@@ -205,13 +205,3 @@
   animation-play-state: paused !important;
 }
 
-/* Ticker: a slanted light bar crossing the blue band, then resting off-screen */
-@keyframes hz-shine {
-  0% {
-    transform: translate3d(-120%, 0, 0);
-  }
-  55%,
-  100% {
-    transform: translate3d(440%, 0, 0);
-  }
-}

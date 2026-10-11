@@ -11,7 +11,6 @@ import {
   useVelocity,
   type MotionValue,
 } from 'framer-motion'
-import '@/components/hero/hero.css'
 import { EASE_OUT } from '@/components/ui/Reveal'
 import { engines, platformsWeBuildFor } from '@/config/site'
 import { cn } from '@/lib/cn'
@@ -20,30 +19,26 @@ import { cn } from '@/lib/cn'
 /*  Content                                                           */
 /* ------------------------------------------------------------------ */
 
-const VERBS = ['Play', 'Create', 'Compete', 'Conquer', 'Explore', 'Level up']
-
-/** Engines + platforms from the site config, as shown on the second band. */
+/** Engines + platforms from the site config, as shown on the band. */
 const TECH: { text: string; hot: boolean }[] = [...engines, ...platformsWeBuildFor].map((raw) => {
   const text = raw === 'Web / WebGL' ? 'WebGL' : raw === 'iOS' ? raw : raw.toUpperCase()
   // a few words are filled cyan, the rest stay outlined
   return { text, hot: ['UNREAL ENGINE', 'PC', 'AR / VR'].includes(text) }
 })
 
-const SR_TEXT = `${VERBS.join(', ')}. Hizarc Games builds in ${engines.join(' and ')} for ${platformsWeBuildFor.join(', ')}.`
+const SR_TEXT = `Hizarc Games builds in ${engines.join(' and ')} for ${platformsWeBuildFor.join(', ')}.`
 
 /* ------------------------------------------------------------------ */
 /*  Geometry                                                          */
 /*                                                                    */
-/*  Band height --h; the two bands are rotated -2° / +1.5°, so at the */
-/*  viewport edge they drift ±tan(angle)·50vw off their centre line.  */
-/*  They are stacked so they touch/overlap a little on the left and   */
-/*  fan apart toward the right (a shallow wedge): always readable,    */
-/*  never clipped, and ~120px tall on a phone.                        */
+/*  Band height --h; the band is rotated +1.5°, so at the viewport    */
+/*  edge it drifts ±tan(1.5°)·50vw ≈ ±1.31vw off its centre line.     */
+/*  The wrapper leaves that much room (plus 10px) above and below,    */
+/*  so the band is never clipped.                                     */
 /* ------------------------------------------------------------------ */
 
-const WRAP_STYLE: CSSProperties = { height: 'calc(1.7 * var(--h) + 6.12vw + 20px)' }
-const ROW1_STYLE: CSSProperties = { top: 'calc(1.75vw + 10px)' }
-const ROW2_STYLE: CSSProperties = { top: 'calc(4.81vw + 10px + 0.7 * var(--h))' }
+const WRAP_STYLE: CSSProperties = { height: 'calc(var(--h) + 2.62vw + 20px)' }
+const ROW_STYLE: CSSProperties = { top: 'calc(1.31vw + 10px)' }
 
 /** A slanted parallelogram — a nod to the Hizarc "H" crossbar (28° cut). */
 function Slash({ className }: { className?: string }) {
@@ -127,11 +122,10 @@ function MarqueeRow({ dir, speed, boost, lean, running, children }: MarqueeRowPr
 /* ------------------------------------------------------------------ */
 
 /**
- * Two full-bleed marquee bands crossing the page at slight, opposing angles.
- * Band 1: Hizarc-blue, white display type (the studio's verbs).
- * Band 2: dark, outlined type with a few cyan-filled words (tech & platforms).
- * Both run opposite ways and speed up / lean with the scroll velocity (and
- * reverse when you scroll back up). Reduced motion → static bands.
+ * A full-bleed marquee band crossing the page at a slight angle: dark,
+ * outlined type with a few cyan-filled words (tech & platforms).
+ * It speeds up / leans with the scroll velocity (and reverses when you
+ * scroll back up). Reduced motion → static band.
  * Decorative: aria-hidden, with a single sr-only sentence.
  */
 export function Ticker() {
@@ -162,41 +156,12 @@ export function Ticker() {
       <p className="sr-only">{SR_TEXT}</p>
 
       <div aria-hidden className="absolute inset-0">
-        {/* Band 1 — Hizarc blue, in front */}
         <motion.div
-          className="absolute -left-[15%] z-10 flex h-[var(--h)] w-[130%] items-center overflow-hidden bg-[linear-gradient(100deg,#0062d6_0%,#0a7cff_38%,#1799ff_72%,#2ee6ff_135%)] font-display text-[1rem] font-bold tracking-[0.06em] text-white uppercase shadow-[0_14px_40px_-10px_rgba(10,124,255,0.6),0_6px_18px_-6px_rgba(0,0,0,0.6)] sm:text-[1.2rem] lg:text-[1.5rem]"
-          style={{ ...ROW1_STYLE, rotate: -2 }}
-          initial={{ opacity: 0, x: '-9%' }}
-          animate={entered ? { opacity: 1, x: '0%' } : undefined}
-          transition={{ duration: 1.2, ease: EASE_OUT }}
-        >
-          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/30" />
-          {/* A slanted light bar sweeps the band every few seconds (compositor-only) */}
-          <span
-            className={cn(
-              'pointer-events-none absolute inset-y-0 left-0 w-1/4 animate-[hz-shine_8s_cubic-bezier(0.65,0,0.35,1)_1s_infinite]',
-              !inView && '[animation-play-state:paused]',
-            )}
-          >
-            <span className="absolute inset-0 -skew-x-[28deg] bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-          </span>
-          <MarqueeRow dir={1} speed={64} boost={boost} lean={reduce ? still : lean} running={running}>
-            {[...VERBS, ...VERBS].map((word, i) => (
-              <span key={i} className="flex shrink-0 items-center gap-[var(--gap)] pr-[var(--gap)] whitespace-nowrap">
-                {word}
-                <Slash className={i % 2 ? 'text-white' : 'text-white/55'} />
-              </span>
-            ))}
-          </MarqueeRow>
-        </motion.div>
-
-        {/* Band 2 — dark, outlined type, travelling the other way */}
-        <motion.div
-          className="absolute -left-[15%] z-0 flex h-[var(--h)] w-[130%] items-center overflow-hidden border-y border-line-strong bg-ink-900 font-display text-[1rem] font-bold tracking-[0.06em] uppercase sm:text-[1.2rem] lg:text-[1.5rem]"
-          style={{ ...ROW2_STYLE, rotate: 1.5 }}
+          className="absolute -left-[15%] flex h-[var(--h)] w-[130%] items-center overflow-hidden border-y border-line-strong bg-ink-900 font-display text-[1rem] font-bold tracking-[0.06em] uppercase sm:text-[1.2rem] lg:text-[1.5rem]"
+          style={{ ...ROW_STYLE, rotate: 1.5 }}
           initial={{ opacity: 0, x: '9%' }}
           animate={entered ? { opacity: 1, x: '0%' } : undefined}
-          transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.12 }}
+          transition={{ duration: 1.2, ease: EASE_OUT }}
         >
           <MarqueeRow dir={-1} speed={48} boost={boost} lean={reduce ? still : lean} running={running}>
             {[...TECH, ...TECH].map((item, i) => (
