@@ -42,11 +42,19 @@ export function withAlpha(hex: string, alpha: number) {
 }
 
 // Launch times are announced in studio time (Calicut, IST / UTC+5:30).
-const dateFmt = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' })
-const timeFmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Asia/Kolkata' })
+// Built defensively: a runtime without the time zone data (or full ICU) degrades instead of throwing at import.
+function makeFormatter(options: Intl.DateTimeFormatOptions) {
+  try {
+    return new Intl.DateTimeFormat('en-GB', { ...options, timeZone: 'Asia/Kolkata' })
+  } catch {
+    return null
+  }
+}
+const dateFmt = makeFormatter({ day: '2-digit', month: 'short', year: 'numeric' })
+const timeFmt = makeFormatter({ hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
 
 export function formatLaunch(ms: number) {
-  return { date: dateFmt.format(ms), time: `${timeFmt.format(ms)} IST` }
+  return { date: dateFmt?.format(ms) ?? '--', time: `${timeFmt?.format(ms) ?? '--:--'} IST` }
 }
 
 /** Parse an ISO date; returns null when missing or invalid. */

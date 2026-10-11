@@ -1,5 +1,7 @@
 node_modules
 dist
+# Temporary server build used by scripts/prerender.mjs (deleted at the end of `npm run build`)
+dist-ssr
 .env
 .env.local
 *.log

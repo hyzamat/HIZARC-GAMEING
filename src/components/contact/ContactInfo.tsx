@@ -183,7 +183,7 @@ export function ContactInfo({ className }: { className?: string }) {
             whileInView="show"
             viewport={{ once: true, amount: 0.5 }}
             className="mt-4 flex flex-wrap gap-2.5"
-            aria-label="Hizarc Games on social media"
+            aria-label={`${site.name} on social media`}
           >
             {links.map((s) => {
               const Icon = socialIcons[s.key]

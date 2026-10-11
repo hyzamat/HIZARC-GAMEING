@@ -14,7 +14,7 @@ export function Arcade() {
   const scores = useArcadeScores()
 
   return (
-    <section id="arcade" aria-label="Bonus level: Hizarc Dash, a playable mini-game" className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40">
+    <section id="arcade" aria-label="Bonus level: HIZARC Dash, a playable mini-game" className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40">
       {/* Backdrop: blueprint grid + glows, clipped inside the section */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="bg-grid absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_50%_45%,#000_15%,transparent_72%)]" />

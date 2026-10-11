@@ -455,7 +455,7 @@ export function ContactForm({ className }: { className?: string }) {
                 onAnimationComplete={(def) => {
                   if (def === 'show') onFormEntered()
                 }}
-                aria-label="Contact Hizarc Games"
+                aria-label={`Contact ${site.name}`}
                 className="p-5 sm:p-8 xl:p-10"
               >
                 {/* console header */}

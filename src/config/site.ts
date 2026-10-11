@@ -6,18 +6,20 @@
  */
 
 export const site = {
-  name: 'Hizarc Games',
+  name: 'HIZARC Games',
   shortName: 'HIZARC',
   url: 'https://hizarc.com',
   parentName: 'HIZARC',
   parentUrl: 'https://dev.hizarc.com',
   tagline: 'We build worlds worth playing.',
   description:
-    'Hizarc Games is the game studio of HIZARC. From Calicut, Kerala, India, we craft original games for mobile, PC, web and XR in Unity and Unreal Engine, and co-develop with brands and publishers worldwide.',
+    'HIZARC Games is the game studio of HIZARC. From Calicut, Kerala, India, we craft original games for mobile, PC, web and XR in Unity and Unreal Engine, and co-develop with brands and publishers worldwide.',
 
   /** Where the contact form + "email us" buttons point. */
   email: 'shainal@hizarc.com',
   location: 'Calicut, Kerala, India',
+  /** Same place, with the city's official name (the footer address spells out both). */
+  locationFull: 'Calicut (Kozhikode), Kerala, India',
   locationShort: 'Calicut, India',
 
   /**

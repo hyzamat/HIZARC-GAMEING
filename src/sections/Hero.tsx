@@ -144,6 +144,7 @@ export function Hero() {
             <AnimatedWords
               as="h1"
               text={TITLE}
+              srPrefix={`${site.name} —`}
               trigger="manual"
               play={introDone}
               delay={t.title}
@@ -186,7 +187,7 @@ export function Hero() {
           <Depth progress={scrollYProgress} shift={150} fade={[0, 0.3]} reduce={reduce}>
             <motion.ul
               variants={heroFadeUp(t.pill, 16)}
-              aria-label="Hizarc Games at a glance"
+              aria-label={`${site.name} at a glance`}
               className="mt-12 hidden items-center [@media(min-width:1024px)_and_(min-height:800px)]:flex"
             >
               {PROOF.map((p, i) => (

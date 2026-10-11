@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { motion, type Transition } from 'framer-motion'
+import { site } from '@/config/site'
 import { cn } from '@/lib/cn'
 
 /**
@@ -45,7 +46,7 @@ type LogoMarkProps = {
   title?: string
 }
 
-export function LogoMark({ variant = 'inverse', animate = false, delay = 0, className, title = 'Hizarc Games' }: LogoMarkProps) {
+export function LogoMark({ variant = 'inverse', animate = false, delay = 0, className, title = site.name }: LogoMarkProps) {
   const uid = useId().replace(/:/g, '')
   const darkFill =
     variant === 'color' ? LOGO_COLORS.dark : variant === 'inverse' ? '#f4f7ff' : variant === 'gradient' ? `url(#hz-d-${uid})` : 'currentColor'
@@ -94,11 +95,11 @@ export function LogoMark({ variant = 'inverse', animate = false, delay = 0, clas
   )
 }
 
-/** "HIZARC GAMES" text lockup. */
+/** "HIZARC GAMES" text lockup (CSS-uppercased; the DOM text reads "HIZARC Games"). */
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn('font-display leading-none font-bold tracking-[0.04em] text-snow uppercase', className)}>
-      Hizarc<span className="text-brand-400"> Games</span>
+      HIZARC<span className="text-brand-400"> Games</span>
     </span>
   )
 }

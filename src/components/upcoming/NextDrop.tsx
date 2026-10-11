@@ -2,7 +2,7 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import type { UpcomingGame } from '@/data/games'
 import { cn } from '@/lib/cn'
-import { useNow } from './clock'
+import { isPrerender, useNow } from './clock'
 import { parseLaunch } from './meta'
 import { CompactCountdown } from './ReleaseHud'
 
@@ -17,10 +17,13 @@ export function NextDrop({ games, className }: NextDropProps) {
   const visible = useInView(ref)
   const now = useNow(visible)
 
+  // Prerender: no countdown in the static HTML (it would be frozen at build time), so it shows the pipeline line.
   let next: { title: string; at: number } | null = null
-  for (const game of games) {
-    const at = parseLaunch(game.releaseDate)
-    if (at !== null && at > now && (!next || at < next.at)) next = { title: game.title, at }
+  if (!isPrerender) {
+    for (const game of games) {
+      const at = parseLaunch(game.releaseDate)
+      if (at !== null && at > now && (!next || at < next.at)) next = { title: game.title, at }
+    }
   }
 
   return (

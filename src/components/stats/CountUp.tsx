@@ -25,11 +25,13 @@ type CountUpProps = {
  * separators / fixed decimals. An invisible copy of the final number reserves the
  * width, so neighbouring elements (the unit suffix) never jitter while counting.
  * Assistive tech reads only the final number. Reduced motion: shown immediately.
+ * The two visual copies carry data-nosnippet, so only the sr-only copy can end up in a search snippet.
  */
 export function CountUp({ value, decimals = 0, play, delay = 0, duration = 2.4, onDone, className, numberClassName, numberStyle }: CountUpProps) {
   const reduce = useReducedMotion()
   // Reduced motion: start on the final value so there is never a frame showing "0".
-  const mv = useMotionValue(reduce ? value : 0)
+  // The build-time prerender (no window) does the same, so the static HTML carries the real number.
+  const mv = useMotionValue(reduce || typeof window === 'undefined' ? value : 0)
   const fmt = useMemo(
     () => new Intl.NumberFormat('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }),
     [decimals],
@@ -61,10 +63,10 @@ export function CountUp({ value, decimals = 0, play, delay = 0, duration = 2.4, 
 
   return (
     <span className={cn('relative inline-block tabular-nums', className)}>
-      <span aria-hidden className="invisible">
+      <span aria-hidden data-nosnippet className="invisible">
         {finalText}
       </span>
-      <span aria-hidden className={cn('absolute inset-y-0 left-0 whitespace-nowrap', numberClassName)} style={numberStyle}>
+      <span aria-hidden data-nosnippet className={cn('absolute inset-y-0 left-0 whitespace-nowrap', numberClassName)} style={numberStyle}>
         <motion.span>{text}</motion.span>
       </span>
       <span className="sr-only">{finalText}</span>

@@ -343,7 +343,7 @@ const MOTIFS: Record<ArtMotif, (m: MotifProps) => ReactNode> = {
     )
   },
 
-  /* Futuristic Dubai-style skyline at sunset */
+  /* Futuristic neon skyline at sunset */
   skyline({ p, id, url, rand, live }) {
     const base = 860
     const far: { x: number; w: number; h: number }[] = []

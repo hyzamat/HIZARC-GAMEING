@@ -195,7 +195,7 @@ export function FooterWordmark() {
   const rule = useTransform(fill, [0.1, 0.95], [0, 1], { clamp: true })
 
   return (
-    <div ref={ref} className="relative w-full px-[max(0.5rem,1.1vw)] pt-10 sm:pt-16">
+    <div ref={ref} data-nosnippet className="relative w-full px-[max(0.5rem,1.1vw)] pt-10 sm:pt-16">
       <motion.div style={reduce ? undefined : { y: lift }}>
         {/* Phones: two monumental lines */}
         <div className="flex flex-col gap-[1.8vw] sm:hidden">

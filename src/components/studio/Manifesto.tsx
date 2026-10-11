@@ -2,7 +2,7 @@ import { motion, useInView, useReducedMotion, useScroll, useTransform, type Moti
 import { useMemo, useRef } from 'react'
 import { LogoMark } from '@/components/brand/Logo'
 import { Reveal } from '@/components/ui/Reveal'
-import { useNow } from '@/components/upcoming/clock'
+import { isPrerender, useNow } from '@/components/upcoming/clock'
 import { site } from '@/config/site'
 import { cn } from '@/lib/cn'
 import { manifesto } from './content'
@@ -84,7 +84,14 @@ function ManifestoWord({ word, index, count, progress, reduce, last }: WordProps
 /*  Studio card (left rail)                                         */
 /* ---------------------------------------------------------------- */
 
-const timeFmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Asia/Kolkata' })
+// Built defensively so a runtime without time zone data (or full ICU) degrades to "--:--" instead of throwing at import.
+const timeFmt = (() => {
+  try {
+    return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Asia/Kolkata' })
+  } catch {
+    return null
+  }
+})()
 
 function StudioCard() {
   const ref = useRef<HTMLDListElement>(null)
@@ -110,13 +117,16 @@ function StudioCard() {
             <dt className="text-haze">Headquarters</dt>
             <dd className="mt-1.5 text-snow">{site.location}</dd>
           </div>
-          <div>
-            <dt className="text-haze">Studio time</dt>
-            <dd className="mt-1.5 flex items-center gap-2 text-snow">
-              <span aria-hidden className="size-1.5 animate-pulse-soft rounded-full bg-volt shadow-[0_0_10px_rgba(215,255,58,0.8)]" />
-              <span className="tabular-nums">{timeFmt.format(now)}</span> IST
-            </dd>
-          </div>
+          {/* live clock: left out of the prerendered HTML, where it would be frozen at build time */}
+          {!isPrerender && (
+            <div>
+              <dt className="text-haze">Studio time</dt>
+              <dd className="mt-1.5 flex items-center gap-2 text-snow">
+                <span aria-hidden className="size-1.5 animate-pulse-soft rounded-full bg-volt shadow-[0_0_10px_rgba(215,255,58,0.8)]" />
+                <span className="tabular-nums">{timeFmt ? timeFmt.format(now) : '--:--'}</span> IST
+              </dd>
+            </div>
+          )}
         </dl>
       </Reveal>
     </div>

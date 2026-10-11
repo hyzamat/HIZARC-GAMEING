@@ -4,7 +4,7 @@ import { STAT_ACCENTS, StatTile } from '@/components/stats/StatTile'
 import { AnimatedWords } from '@/components/ui/AnimatedWords'
 import { Container } from '@/components/ui/Container'
 import { Reveal, staggerParent } from '@/components/ui/Reveal'
-import { platformsWeBuildFor, stats } from '@/config/site'
+import { platformsWeBuildFor, site, stats } from '@/config/site'
 import { cn } from '@/lib/cn'
 import '@/components/stats/stats.css'
 
@@ -30,7 +30,7 @@ export function Stats() {
   const paused = !visible && '[animation-play-state:paused]'
 
   return (
-    <section id="stats" ref={sectionRef} aria-label="Hizarc Games by the numbers" className="relative border-y border-line py-14 sm:py-20 lg:py-24">
+    <section id="stats" ref={sectionRef} aria-label={`${site.name} by the numbers`} className="relative border-y border-line py-14 sm:py-20 lg:py-24">
       {/* backdrop */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden bg-gradient-to-b from-ink-900/70 via-ink-950 to-ink-900/70">
         <div className={cn('absolute inset-0 bg-grid', GRID_MASK)} />

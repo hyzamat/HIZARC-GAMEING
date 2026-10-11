@@ -21,16 +21,16 @@ const studioLinks = [
   { label: 'Player support', href: contactHref('Player Support') },
 ] as const
 
-/** Column title: mono HUD label over a hairline with a 28° brand slice. */
+/** Column title: mono HUD label over a hairline with a 28° brand slice. The [index] sits beside the <h3> so the heading text is just the title. */
 function ColumnTitle({ index, children }: { index: string; children: ReactNode }) {
   return (
-    <h3 className="relative flex items-center gap-3 border-t border-line pt-5 font-mono text-[0.7rem] tracking-[0.25em] text-haze uppercase">
+    <div className="relative flex items-center gap-3 border-t border-line pt-5 font-mono text-[0.7rem] tracking-[0.25em] text-haze uppercase">
       <span aria-hidden className="absolute -top-px left-0 h-px w-10 bg-gradient-to-r from-brand to-cyan" />
       <span aria-hidden className="text-brand-400">
         [{index}]
       </span>
-      {children}
-    </h3>
+      <h3>{children}</h3>
+    </div>
   )
 }
 
@@ -105,7 +105,7 @@ export function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink-950">
-      <h2 className="sr-only">{site.name} site footer</h2>
+      <h2 className="sr-only">{site.name} — game studio in Calicut, Kerala, India</h2>
 
       {/* Atmosphere */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -237,13 +237,15 @@ export function Footer() {
               </ul>
             )}
 
-            <a
-              href={`mailto:${site.email}`}
-              className="group/mail mt-5 inline-flex min-h-11 items-center gap-2.5 font-mono text-[0.82rem] tracking-[0.04em] break-all text-mist transition-colors duration-300 hover:text-snow"
-            >
-              <Mail aria-hidden className="size-4 shrink-0 text-brand-400 transition-transform duration-300 group-hover/mail:-rotate-6 group-hover/mail:scale-110" strokeWidth={2} />
-              {site.email}
-            </a>
+            <address className="not-italic">
+              <a
+                href={`mailto:${site.email}`}
+                className="group/mail mt-5 inline-flex min-h-11 items-center gap-2.5 font-mono text-[0.82rem] tracking-[0.04em] break-all text-mist transition-colors duration-300 hover:text-snow"
+              >
+                <Mail aria-hidden className="size-4 shrink-0 text-brand-400 transition-transform duration-300 group-hover/mail:-rotate-6 group-hover/mail:scale-110" strokeWidth={2} />
+                {site.email}
+              </a>
+            </address>
           </motion.div>
         </motion.div>
       </Container>
@@ -253,15 +255,16 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="mt-8 border-t border-line pb-safe sm:mt-10">
         <Container className="flex flex-col gap-5 pt-6 pb-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[0.66rem] leading-relaxed tracking-[0.14em] text-haze uppercase">
+          {/* A <div>, not a <p>: the location is an <address> and can't nest inside a paragraph */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[0.66rem] leading-relaxed tracking-[0.14em] text-haze uppercase">
             <span>
               © {year} {site.name}
             </span>
             <span aria-hidden className="hidden h-3 w-px -skew-x-[28deg] bg-line-strong sm:block" />
             <span>A {site.parentName} company</span>
             <span aria-hidden className="hidden h-3 w-px -skew-x-[28deg] bg-line-strong sm:block" />
-            <span>{site.location}</span>
-          </p>
+            <address className="not-italic">{site.locationFull}</address>
+          </div>
 
           <Button variant="ghost" onClick={toTop} icon={<BackToTopIcon />} className="w-full sm:w-auto">
             Back to top

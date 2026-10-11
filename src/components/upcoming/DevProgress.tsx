@@ -32,7 +32,8 @@ export function DevProgress({ progress, accent, className }: DevProgressProps) {
   const inView = useInView(ref, { once: true, amount: 0.8 })
   const reduce = useReducedMotion()
 
-  const count = useMotionValue(reduce ? pct : 0)
+  // Reduced motion / build-time prerender (no window): start on the final value, not "0".
+  const count = useMotionValue(reduce || typeof window === 'undefined' ? pct : 0)
   const label = useTransform(count, (v) => Math.round(v))
 
   useEffect(() => {

@@ -13,6 +13,12 @@ import { useSyncExternalStore } from 'react'
 
 const floorSecond = (ms: number) => Math.floor(ms / 1000) * 1000
 
+/**
+ * True during the build-time prerender (no window). Live readouts (countdowns, clocks) leave their
+ * time-dependent text out of the static HTML then, so crawlers never index a value frozen at build time.
+ */
+export const isPrerender = typeof window === 'undefined'
+
 let now = floorSecond(Date.now())
 let timer: ReturnType<typeof setTimeout> | undefined
 const listeners = new Set<() => void>()

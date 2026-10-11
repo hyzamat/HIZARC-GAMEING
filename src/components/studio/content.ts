@@ -7,7 +7,7 @@ import type { TargetAndTransition } from 'framer-motion'
 
 /** `*…*` marks the words that get the brand gradient. Keep highlights whitespace-delimited. */
 export const manifesto =
-  'Hizarc Games is the game studio of HIZARC — a technology company from *Calicut, Kerala, India.* We design *original worlds* and co-develop with brands and publishers, shipping on *mobile, PC, web, console and XR* with Unity and Unreal Engine. *Every frame is built to be felt.*'
+  'HIZARC Games is the game studio of HIZARC — a technology company from *Calicut, Kerala, India.* We design *original worlds* and co-develop with brands and publishers, shipping on *mobile, PC, web, console and XR* with Unity and Unreal Engine. *Every frame is built to be felt.*'
 
 export type Capability = {
   title: string

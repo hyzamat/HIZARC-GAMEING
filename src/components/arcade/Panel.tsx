@@ -3,6 +3,7 @@ import { LogoMark } from '@/components/brand/Logo'
 import { Button } from '@/components/ui/Button'
 import { Reveal } from '@/components/ui/Reveal'
 import { Tag } from '@/components/ui/Tag'
+import { site } from '@/config/site'
 import { cn } from '@/lib/cn'
 import { padScore } from './constants'
 import { Keycap } from './Keycap'
@@ -114,7 +115,7 @@ export function ArcadeCta() {
           <div className="min-w-0 flex-1">
             <p className={heading}>
               <span className="text-cyan">[+]</span>
-              Built by Hizarc Games
+              Built by {site.name}
             </p>
             <p className="mt-3 font-display text-[clamp(1.15rem,4.6vw,1.75rem)] leading-[1.15] font-bold text-balance text-snow">
               Want a game like this <span className="text-gradient">for your brand?</span> We build them.

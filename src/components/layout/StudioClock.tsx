@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { isPrerender } from '@/components/upcoming/clock'
 import { site } from '@/config/site'
 
 const ZONE = 'Asia/Kolkata'
@@ -24,6 +25,9 @@ export function StudioClock() {
     const id = window.setInterval(() => setTime(readTime()), 15000)
     return () => window.clearInterval(id)
   }, [])
+
+  // Not part of the prerendered HTML: the time would be frozen at build time.
+  if (isPrerender) return null
 
   return (
     <p className="inline-flex h-8 items-center gap-2.5 bg-white/[0.05] px-3.5 font-mono text-[0.64rem] tracking-[0.2em] whitespace-nowrap text-mist uppercase chamfer-sm">

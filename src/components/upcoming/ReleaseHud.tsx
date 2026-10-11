@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Fragment, type ReactNode } from 'react'
 import { cn } from '@/lib/cn'
-import { useNow } from './clock'
+import { isPrerender, useNow } from './clock'
 import { formatLaunch, parseLaunch } from './meta'
 import { RollingNumber } from './RollingNumber'
 
@@ -70,6 +70,14 @@ export function ReleaseHud({ releaseDate, releaseWindow, active, accent, classNa
   }
 
   const { date, time } = formatLaunch(launch)
+  if (isPrerender) {
+    // Static HTML: just the (stable) launch date. The countdown appears once the app boots.
+    return (
+      <div className={className}>
+        <HudLabel accent={accent} left="Launch" right={`${date} · ${time}`} />
+      </div>
+    )
+  }
   const left = launch - now
 
   if (left <= 0) {

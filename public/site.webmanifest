@@ -1,14 +1,20 @@
 {
-  "name": "Hizarc Games",
-  "short_name": "Hizarc Games",
-  "description": "We build worlds worth playing.",
+  "id": "/",
+  "name": "HIZARC Games",
+  "short_name": "HIZARC Games",
+  "description": "HIZARC Games: game studio in Calicut, Kerala, India. We build worlds worth playing.",
+  "lang": "en",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#03050c",
   "theme_color": "#03050c",
+  "categories": ["games", "entertainment"],
   "icons": [
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
     { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }

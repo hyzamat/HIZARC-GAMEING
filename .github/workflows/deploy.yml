@@ -49,3 +49,21 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Tells Bing, Yandex, Seznam, Naver & co. (IndexNow) that the site changed, so they recrawl it right away.
+  # Google does not use IndexNow: it reads the sitemap submitted in Search Console instead.
+  # The key must match the file public/<key>.txt, which proves we own hizarc.com. Never fails the deploy.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      INDEXNOW_KEY: b09c411fdf87e14be7c0215843f5c05c
+    steps:
+      - name: Ping IndexNow
+        run: |
+          curl -sS -m 30 -o response.txt -w "IndexNow HTTP %{http_code}\n" \
+            -X POST https://api.indexnow.org/indexnow \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"hizarc.com\",\"key\":\"$INDEXNOW_KEY\",\"keyLocation\":\"https://hizarc.com/$INDEXNOW_KEY.txt\",\"urlList\":[\"https://hizarc.com/\"]}"
+          cat response.txt || true

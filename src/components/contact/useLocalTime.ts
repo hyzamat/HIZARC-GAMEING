@@ -8,9 +8,12 @@ function format(timeZone: string) {
   }
 }
 
-/** "HH:MM" wall-clock time in `timeZone`, re-rendering once per minute (aligned to the minute boundary). */
+/**
+ * "HH:MM" wall-clock time in `timeZone`, re-rendering once per minute (aligned to the minute boundary).
+ * '' in the build-time prerender (no window), so the static HTML never carries a time frozen at build.
+ */
 export function useLocalTime(timeZone: string) {
-  const [time, setTime] = useState(() => format(timeZone))
+  const [time, setTime] = useState(() => (typeof window === 'undefined' ? '' : format(timeZone)))
 
   useEffect(() => {
     let interval: number | undefined

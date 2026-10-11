@@ -21,16 +21,20 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <SmoothScroll>
-        <a
-          href="#games"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
-        >
-          Skip to content
-        </a>
+        {/* data-nosnippet (span/div/section only): keeps "Skip to content" out of search snippets */}
+        <span data-nosnippet>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
+          >
+            Skip to content
+          </a>
+        </span>
         <Preloader />
         <ScrollProgress />
         <Navbar />
-        <main className="relative">
+        {/* tabIndex -1: the skip link moves keyboard focus here (see SmoothScroll), so Tab continues past the nav */}
+        <main id="main" tabIndex={-1} className="relative outline-none">
           <SectionBoundary name="Hero">
             <Hero />
           </SectionBoundary>

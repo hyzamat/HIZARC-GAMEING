@@ -1,0 +1,20 @@
+# HIZARC Games
+
+> HIZARC Games (also written Hizarc Games) is the game studio of HIZARC, a technology company from Calicut (Kozhikode), Kerala, India. The studio builds original games for mobile, PC, web, console and XR (AR/VR) in Unity and Unreal Engine, and co-develops games with brands and publishers worldwide. Official website: https://hizarc.com
+
+- Name: HIZARC Games
+- Website: https://hizarc.com
+- Parent company: HIZARC (https://dev.hizarc.com)
+- Location: Calicut (Kozhikode), Kerala, India
+- Engines: Unity, Unreal Engine
+- Platforms: iOS, Android, PC, Web / WebGL, Console, AR / VR
+- Contact: shainal@hizarc.com
+
+## Website sections
+
+- [Home](https://hizarc.com/): studio overview and headline
+- [Games](https://hizarc.com/#games): released games and partner projects
+- [Upcoming](https://hizarc.com/#upcoming): games in development
+- [Arcade](https://hizarc.com/#arcade): a free browser mini-game, HIZARC DASH
+- [Studio](https://hizarc.com/#studio): who we are, what we build, engines and careers
+- [Contact](https://hizarc.com/#contact): partnerships, publishing, co-development, press, careers and player support

@@ -12,7 +12,7 @@ import {
   type MotionValue,
 } from 'framer-motion'
 import { EASE_OUT } from '@/components/ui/Reveal'
-import { engines, platformsWeBuildFor } from '@/config/site'
+import { engines, platformsWeBuildFor, site } from '@/config/site'
 import { cn } from '@/lib/cn'
 
 /* ------------------------------------------------------------------ */
@@ -26,7 +26,7 @@ const TECH: { text: string; hot: boolean }[] = [...engines, ...platformsWeBuildF
   return { text, hot: ['UNREAL ENGINE', 'PC', 'AR / VR'].includes(text) }
 })
 
-const SR_TEXT = `Hizarc Games builds in ${engines.join(' and ')} for ${platformsWeBuildFor.join(', ')}.`
+const SR_TEXT = `${site.name} builds in ${engines.join(' and ')} for ${platformsWeBuildFor.join(', ')}.`
 
 /* ------------------------------------------------------------------ */
 /*  Geometry                                                          */
@@ -155,7 +155,7 @@ export function Ticker() {
     >
       <p className="sr-only">{SR_TEXT}</p>
 
-      <div aria-hidden className="absolute inset-0">
+      <div aria-hidden data-nosnippet className="absolute inset-0">
         <motion.div
           className="absolute -left-[15%] flex h-[var(--h)] w-[130%] items-center overflow-hidden border-y border-line-strong bg-ink-900 font-display text-[1rem] font-bold tracking-[0.06em] uppercase sm:text-[1.2rem] lg:text-[1.5rem]"
           style={{ ...ROW_STYLE, rotate: 1.5 }}

@@ -12,7 +12,7 @@ import { sanitizeInitials, type ArcadeScores } from './scores'
 import { scoreText, shareScore } from './share'
 
 const GAME_LABEL =
-  'HIZARC DASH, an endless side-scrolling runner. A glowing Hizarc logo dashes across a neon Calicut skyline, jumping over shards and gaps and collecting volt orbs.'
+  'HIZARC DASH, an endless side-scrolling runner. A glowing HIZARC logo dashes across a neon Calicut skyline, jumping over shards and gaps and collecting volt orbs.'
 
 const bracket = 'pointer-events-none absolute z-[6] size-4 border-cyan/70'
 const mono = 'font-mono text-[0.62rem] tracking-[0.22em] uppercase sm:text-[0.68rem]'

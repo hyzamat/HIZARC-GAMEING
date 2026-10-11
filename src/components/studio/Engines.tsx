@@ -25,7 +25,7 @@ export function Engines({ className }: { className?: string }) {
       <h3 className="mb-5 sm:mb-6">
         <Reveal as="span" y={10} className="flex items-center gap-3 font-mono text-[0.68rem] tracking-[0.25em] text-mist uppercase">
           <span aria-hidden className="h-[3px] w-6 -skew-x-[28deg] bg-cyan" />
-          Powered by
+          Powered by{' '}
           <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
           <span className="hidden text-snow sm:inline">{engines.join(' + ')}</span>
         </Reveal>

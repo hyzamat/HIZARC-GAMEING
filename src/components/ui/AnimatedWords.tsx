@@ -16,6 +16,8 @@ type AnimatedWordsProps = {
   trigger?: 'inView' | 'manual'
   play?: boolean
   as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  /** Visually hidden text read (and crawled) before the sentence, e.g. the brand name. Also prefixes the aria-label. */
+  srPrefix?: string
 }
 
 /**
@@ -32,6 +34,7 @@ export function AnimatedWords({
   trigger = 'inView',
   play = true,
   as = 'h2',
+  srPrefix,
 }: AnimatedWordsProps) {
   const Tag = motion[as] as typeof motion.h2
   const lines = text.split('\n')
@@ -44,7 +47,8 @@ export function AnimatedWords({
       : { initial: 'hidden' as const, animate: play ? ('show' as const) : ('hidden' as const) }
 
   return (
-    <Tag className={className} aria-label={plain} {...animateProps}>
+    <Tag className={className} aria-label={srPrefix ? `${srPrefix} ${plain}` : plain} {...animateProps}>
+      {srPrefix && <span className="sr-only">{srPrefix} </span>}
       {lines.map((line, li) => (
         <Fragment key={li}>
           {line

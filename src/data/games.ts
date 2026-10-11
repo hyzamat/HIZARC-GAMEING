@@ -169,7 +169,7 @@ export const games: Game[] = [
     title: 'Falcon Rise',
     tagline: 'Own the skyline.',
     description:
-      'Soar a falcon through a futuristic Dubai skyline in this endless flyer. Dive between towers, ride desert thermals at sunset and collect relics hidden above the clouds.',
+      'Soar a falcon through a futuristic neon skyline in this endless flyer. Dive between towers, ride desert thermals at sunset and collect relics hidden above the clouds.',
     genre: 'Endless Flyer',
     category: 'Casual',
     platforms: ['ios', 'android'],

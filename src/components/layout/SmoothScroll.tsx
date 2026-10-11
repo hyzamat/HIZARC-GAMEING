@@ -51,8 +51,12 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       if (id && id !== 'top' && !document.getElementById(id)) return
       e.preventDefault()
       scrollToTarget(hash)
-      if (id && id !== 'top') history.replaceState(null, '', hash)
-      else history.replaceState(null, '', window.location.pathname)
+      if (id && id !== 'top') {
+        history.replaceState(null, '', hash)
+        // Targets marked tabindex="-1" (the <main> landmark behind the skip link) take focus, so Tab continues from there.
+        const target = document.getElementById(id)
+        if (target?.getAttribute('tabindex') === '-1') target.focus({ preventScroll: true })
+      } else history.replaceState(null, '', window.location.pathname)
     }
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)

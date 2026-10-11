@@ -242,7 +242,7 @@ export function Navbar() {
               <motion.a
                 variants={item}
                 href="#top"
-                aria-label="Hizarc Games, back to top"
+                aria-label={`${site.name}, back to top`}
                 className="group -m-2 flex min-h-11 shrink-0 items-center gap-2.5 p-2"
               >
                 <LogoMark

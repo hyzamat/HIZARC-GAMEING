@@ -145,7 +145,7 @@ function MenuPanel({ id, active, onClose, onNavigate }: MobileMenuProps) {
         <div className="relative flex h-full flex-col overflow-y-auto overscroll-contain pt-safe" data-lenis-prevent>
           {/* Top bar mirrors the navbar so the logo and toggle never jump */}
           <Container className="flex h-16 shrink-0 items-center justify-between gap-4">
-            <a href="#top" onClick={go('#top')} aria-label="Hizarc Games, back to top" className="-m-2 flex min-h-11 items-center gap-2.5 p-2">
+            <a href="#top" onClick={go('#top')} aria-label={`${site.name}, back to top`} className="-m-2 flex min-h-11 items-center gap-2.5 p-2">
               <LogoMark className="w-7" title="" />
               <Wordmark className="text-[0.85rem] min-[380px]:text-[0.95rem]" />
             </a>

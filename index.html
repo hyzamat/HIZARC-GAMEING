@@ -3,72 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Hizarc Games — We build worlds worth playing</title>
+    <title>HIZARC Games — Game Studio in Calicut, Kerala, India</title>
     <meta
       name="description"
-      content="Hizarc Games is the game studio of HIZARC in Calicut, Kerala, India. We craft original mobile, PC, web and XR games in Unity and Unreal Engine, and partner with brands and publishers worldwide."
+      content="HIZARC Games is the game studio of HIZARC in Calicut (Kozhikode), Kerala, India. We build original mobile, PC, web and XR games in Unity and Unreal Engine."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://hizarc.com/" />
     <meta name="theme-color" content="#03050c" />
     <meta name="color-scheme" content="dark" />
-    <link rel="canonical" href="https://hizarc.com/" />
+    <meta name="author" content="HIZARC Games" />
+    <!-- Search Console / Bing Webmaster verification tags go here, e.g.
+         <meta name="google-site-verification" content="..." /> -->
 
+    <!-- Fonts used above the fold: fetch them alongside the CSS instead of after it -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/node_modules/@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Hizarc Games" />
-    <meta property="og:title" content="Hizarc Games — We build worlds worth playing" />
+    <meta property="og:site_name" content="HIZARC Games" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:title" content="HIZARC Games — Game Studio in Calicut, Kerala, India" />
     <meta
       property="og:description"
-      content="Original games for mobile, PC, web and XR, built in Calicut, Kerala, India with Unity and Unreal Engine."
+      content="Original games for mobile, PC, web and XR, built by HIZARC Games in Calicut, Kerala, India with Unity and Unreal Engine."
     />
     <meta property="og:url" content="https://hizarc.com/" />
     <meta property="og:image" content="https://hizarc.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="HIZARC Games — game studio in Calicut, Kerala, India. We build worlds worth playing." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hizarc Games — We build worlds worth playing" />
+    <meta name="twitter:title" content="HIZARC Games — Game Studio in Calicut, Kerala, India" />
     <meta
       name="twitter:description"
-      content="Original games for mobile, PC, web and XR, built in Calicut, Kerala, India with Unity and Unreal Engine."
+      content="Original games for mobile, PC, web and XR, built by HIZARC Games in Calicut, Kerala, India with Unity and Unreal Engine."
     />
     <meta name="twitter:image" content="https://hizarc.com/og-image.png" />
+    <meta name="twitter:image:alt" content="HIZARC Games logo and tagline" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Hizarc Games",
-            "alternateName": ["HIZARC", "Hizarc", "HIZARC Games"],
-            "url": "https://hizarc.com/"
-          },
-          {
-            "@type": "Organization",
-            "name": "Hizarc Games",
-            "alternateName": "HIZARC Games",
-            "url": "https://hizarc.com",
-            "logo": "https://hizarc.com/logo.png",
-            "parentOrganization": { "@type": "Organization", "name": "HIZARC", "url": "https://dev.hizarc.com" },
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Calicut",
-              "addressRegion": "Kerala",
-              "addressCountry": "IN"
-            }
-          }
-        ]
-      }
-    </script>
+    <!-- Structured data (WebSite + Organization) is generated from src/seo/structuredData.ts at build time -->
+    <!--app-structured-data-->
+
+    <!-- Without JavaScript, show the prerendered page as-is: no loader curtain, no hidden entrance states -->
+    <noscript>
+      <style>
+        #hz-preloader { display: none !important; }
+        #root [style*='opacity:0;'], #root [style$='opacity:0'] { opacity: 1 !important; }
+        /* ...except decorative layers (scroll-driven veils, hover brackets, glows): revealed, they would black out cards */
+        #root [aria-hidden='true'][style*='opacity:0;'], #root [aria-hidden='true'][style$='opacity:0'] { opacity: 0 !important; }
+        #root [style*='transform:'] { transform: none !important; }
+        #root [style*='clip-path:inset'] { clip-path: none !important; }
+      </style>
+    </noscript>
   </head>
   <body>
-    <noscript>
-      <div style="padding: 24px; font-family: system-ui; color: #f4f7ff; background: #03050c">
-        Hizarc Games needs JavaScript enabled to show its worlds. Reach us at shainal@hizarc.com.
-      </div>
-    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

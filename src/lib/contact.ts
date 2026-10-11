@@ -90,7 +90,7 @@ export function selectContactTopic(topic: ContactTopic, opts: { scroll?: boolean
 /* ---------------------------------------------------------------- */
 
 export function contactSubject(payload: Pick<ContactPayload, 'topic' | 'name'>) {
-  return `[Hizarc Games] ${payload.topic} — ${payload.name}`
+  return `[${site.name}] ${payload.topic} — ${payload.name}`
 }
 
 /**

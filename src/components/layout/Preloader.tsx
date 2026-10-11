@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useTransform, type TargetAndTransition } from 'framer-motion'
 import { LogoMark } from '@/components/brand/Logo'
 import { EASE_OUT } from '@/components/ui/Reveal'
+import { site } from '@/config/site'
 import { topicFromHash } from '@/lib/contact'
 import { markIntroDone } from '@/lib/intro'
 import { lockScroll, scrollToTarget, unlockScroll, getLenis } from '@/lib/scroll'
@@ -25,7 +26,7 @@ const TIMING = {
 const STATUS = ['Booting engine', 'Compiling shaders', 'Spawning worlds', 'Ready, player one'] as const
 
 const CORNERS = [
-  { label: 'Hizarc Games', place: 'top-0 left-0', bracket: 'top-0 left-0 border-t border-l', text: 'pl-6 pt-[3px]' },
+  { label: site.name, place: 'top-0 left-0', bracket: 'top-0 left-0 border-t border-l', text: 'pl-6 pt-[3px]' },
   { label: 'Loading worlds', place: 'top-0 right-0', bracket: 'top-0 right-0 border-t border-r', text: 'pr-6 pt-[3px]', live: true },
   { label: 'Calicut · India', place: 'bottom-0 left-0', bracket: 'bottom-0 left-0 border-b border-l', text: 'pl-6 pb-[3px]' },
   { label: 'v1.0', place: 'bottom-0 right-0', bracket: 'bottom-0 right-0 border-b border-r', text: 'pr-6 pb-[3px]' },
@@ -210,8 +211,16 @@ function PreloaderCurtain() {
   return (
     <AnimatePresence onExitComplete={() => setGone(true)}>
       {visible && (
-        <motion.div key="hz-preloader" exit={{ opacity: 1 }} className="pointer-events-none fixed inset-0 z-[100] overflow-hidden" role="status" aria-live="polite">
-          <span className="sr-only">Loading Hizarc Games</span>
+        <motion.div
+          key="hz-preloader"
+          id="hz-preloader"
+          data-nosnippet
+          exit={{ opacity: 1 }}
+          className="pointer-events-none fixed inset-0 z-[100] overflow-hidden"
+          role="status"
+          aria-live="polite"
+        >
+          <span className="sr-only">Loading {site.name}</span>
 
           {/* Trailing blade: revealed as a slanted band behind the leading edge */}
           <motion.div
