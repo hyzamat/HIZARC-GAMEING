@@ -28,6 +28,26 @@ export const site = {
    * with a pre-filled message to `email` above.
    */
   contactEndpoint: (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) ?? '',
+
+  /**
+   * Google Form that receives contact-form messages (they appear in the form's Responses tab,
+   * or a linked Google Sheet). Takes priority over `contactEndpoint`; set `action` to '' to turn it off.
+   * Entry ids come from the form's public page (view source → `entry.<number>`) and survive renaming
+   * the questions. The form must accept responses from anyone (no sign-in required).
+   */
+  googleForm: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSdMMi6ZepSKeiaxIA2JG8Wm3vteSkFB4BnZXrZwdIBROMtpGw/formResponse',
+    fields: {
+      /** Short answer — "Operative Alias" */
+      name: 'entry.1192359696',
+      /** Short answer — "Comms Link Frequency" */
+      email: 'entry.1865750333',
+      /** Paragraph — "Encrypted Payload": topic, company, budget and the message itself */
+      message: 'entry.1660048100',
+      /** Date (no time) — "Authorization Timestamp": the day it was sent, studio time */
+      date: 'entry.2075667364',
+    },
+  },
 } as const
 
 export type NavItem = { label: string; href: `#${string}` }

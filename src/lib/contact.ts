@@ -177,6 +177,58 @@ export function buildMailto(payload: ContactPayload) {
 
 const REQUEST_TIMEOUT_MS = 15000
 
+/** Where a submitted message goes, in priority order: Google Form → JSON endpoint → visitor's email app. */
+export function contactDelivery(): 'google-form' | 'endpoint' | 'mailto' {
+  if (site.googleForm.action.trim()) return 'google-form'
+  if (site.contactEndpoint.trim()) return 'endpoint'
+  return 'mailto'
+}
+
+/** Today's date in studio time (Calicut), split the way a Google Forms date question expects it. */
+function studioDateParts() {
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date())
+  const get = (type: Intl.DateTimeFormatPartTypes) => parts.find((p) => p.type === type)?.value ?? ''
+  return { year: get('year'), month: get('month'), day: get('day') }
+}
+
+function googleFormBody(payload: ContactPayload) {
+  const { fields } = site.googleForm
+  const date = studioDateParts()
+  const body = new URLSearchParams({ fvv: '1', pageHistory: '0' })
+  body.set(fields.name, payload.name)
+  body.set(fields.email, payload.email)
+  // The whole mail body (name, email, topic, company, budget, message) so one cell holds the full context.
+  body.set(fields.message, mailtoBody(payload, payload.message))
+  body.set(`${fields.date}_year`, date.year)
+  body.set(`${fields.date}_month`, date.month)
+  body.set(`${fields.date}_day`, date.day)
+  return body
+}
+
+/**
+ * POST the message to the Google Form. Google doesn't allow cross-origin reads, so this is a `no-cors`
+ * request: the response is opaque and can't be checked — a resolved request counts as delivered,
+ * and only network failures / timeouts reject.
+ */
+async function sendToGoogleForm(payload: ContactPayload): Promise<ContactResult> {
+  const controller = new AbortController()
+  const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
+  try {
+    await fetch(site.googleForm.action, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: googleFormBody(payload),
+      signal: controller.signal,
+    })
+    return { via: 'endpoint' }
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'AbortError') throw new Error('The request timed out.')
+    throw new Error("We couldn't reach our message service — check your connection.")
+  } finally {
+    window.clearTimeout(timer)
+  }
+}
+
 /** Pull a human-readable reason out of a form backend's error JSON (Formspree, Web3Forms, Getform…). */
 async function readErrorMessage(res: Response) {
   try {
@@ -195,18 +247,23 @@ async function readErrorMessage(res: Response) {
 
 /**
  * Deliver a contact message.
+ * - `site.googleForm.action` set → submit it to the Google Form; throws on network errors / timeouts.
  * - `site.contactEndpoint` set → POST JSON to it; throws on network errors or non-2xx responses.
  * - otherwise → opens the visitor's email app with a pre-filled message to `site.email`.
  *   Navigation happens synchronously (inside the submit gesture) so browsers allow the mailto hand-off.
  */
 export async function sendContact(input: ContactPayload): Promise<ContactResult> {
   const payload = cleanPayload(input)
-  const endpoint = site.contactEndpoint.trim()
+  const delivery = contactDelivery()
 
-  if (!endpoint) {
+  if (delivery === 'google-form') return sendToGoogleForm(payload)
+
+  if (delivery === 'mailto') {
     window.location.href = buildMailto(payload)
     return { via: 'mailto' }
   }
+
+  const endpoint = site.contactEndpoint.trim()
 
   const controller = new AbortController()
   const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)

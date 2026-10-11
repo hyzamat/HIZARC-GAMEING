@@ -6,7 +6,7 @@ import { site, type ContactTopic } from '@/config/site'
 import { useFinePointer } from '@/hooks/useMediaQuery'
 import { celebrate, centerOf } from '@/lib/celebrate'
 import { cn } from '@/lib/cn'
-import { budgetRanges, EMAIL_RE, MESSAGE_MAX, MESSAGE_MIN, sendContact, topicNeedsBudget, type ContactPayload, type ContactResult } from '@/lib/contact'
+import { budgetRanges, contactDelivery, EMAIL_RE, MESSAGE_MAX, MESSAGE_MIN, sendContact, topicNeedsBudget, type ContactPayload, type ContactResult } from '@/lib/contact'
 import { NAV_OFFSET, scrollToTarget } from '@/lib/scroll'
 import { playSfx } from '@/lib/sfx'
 import { ChamferFrame } from './ChamferFrame'
@@ -387,7 +387,7 @@ export function ContactForm({ className }: { className?: string }) {
   const checks = [true, values.name.trim() !== '', EMAIL_RE.test(values.email.trim()), values.message.trim().length >= MESSAGE_MIN]
   const level = checks.filter(Boolean).length
   const ready = level === checks.length
-  const viaMail = site.contactEndpoint.trim() === ''
+  const viaMail = contactDelivery() === 'mailto'
 
   return (
     <motion.div

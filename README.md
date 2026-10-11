@@ -25,9 +25,22 @@ Everything you'll want to change lives in two files — no component code needed
 
 ## Contact form
 
-By default the form opens the visitor's email app with a pre-filled message to the address in `site.ts`.
-To receive submissions directly, create a free form endpoint (e.g. [Formspree](https://formspree.io), Web3Forms, Getform),
-then copy `.env.example` to `.env` and set:
+Messages are sent to the **"HIZZARC GAMES" Google Form** (`googleForm` in `src/config/site.ts`), so they show up in the
+form's *Responses* tab (click *Link to Sheets* there to collect them in a spreadsheet). Field mapping:
+
+| Website field | Google Form question (entry id) |
+| --- | --- |
+| Name | Operative Alias (`entry.1192359696`) |
+| Email | Comms Link Frequency (`entry.1865750333`) |
+| Topic, company, budget + message | Encrypted Payload (`entry.1660048100`) |
+| Date sent (IST) | Authorization Timestamp (`entry.2075667364`) |
+
+Renaming the questions in Google Forms is safe (the entry ids stay the same). Deleting a question or changing its type
+breaks the mapping, so update `site.ts` if you do. The form must stay open to responses from anyone.
+
+To use a different backend instead, set `googleForm.action` to `''` and either leave everything empty (the form then opens
+the visitor's email app with a pre-filled message to the address in `site.ts`), or create a free form endpoint
+(e.g. [Formspree](https://formspree.io), Web3Forms, Getform), copy `.env.example` to `.env` and set:
 
 ```
 VITE_CONTACT_ENDPOINT=https://formspree.io/f/your-id
