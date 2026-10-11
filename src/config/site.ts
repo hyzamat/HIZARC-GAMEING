@@ -21,7 +21,7 @@ export const site = {
   locationShort: 'Calicut, India',
 
   /**
-   * Contact form delivery.
+   * Contact form delivery (only used when `googleForm.action` below is '').
    * Set VITE_CONTACT_ENDPOINT in a `.env` file to a form backend that accepts
    * JSON POSTs (e.g. Formspree: https://formspree.io/f/xxxxxx, Web3Forms, Getform, your own API).
    * If it's not set, the form falls back to opening the visitor's email app

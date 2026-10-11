@@ -188,7 +188,9 @@ export function contactDelivery(): 'google-form' | 'endpoint' | 'mailto' {
 function studioDateParts() {
   const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date())
   const get = (type: Intl.DateTimeFormatPartTypes) => parts.find((p) => p.type === type)?.value ?? ''
-  return { year: get('year'), month: get('month'), day: get('day') }
+  // en-GB pads single digits ('05'); send plain numbers like the form's own date inputs do
+  const num = (type: Intl.DateTimeFormatPartTypes) => String(Number(get(type)))
+  return { year: num('year'), month: num('month'), day: num('day') }
 }
 
 function googleFormBody(payload: ContactPayload) {

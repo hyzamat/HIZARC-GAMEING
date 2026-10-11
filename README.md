@@ -36,7 +36,9 @@ form's *Responses* tab (click *Link to Sheets* there to collect them in a spread
 | Date sent (IST) | Authorization Timestamp (`entry.2075667364`) |
 
 Renaming the questions in Google Forms is safe (the entry ids stay the same). Deleting a question or changing its type
-breaks the mapping, so update `site.ts` if you do. The form must stay open to responses from anyone.
+breaks the mapping, so update `site.ts` if you do. The form must stay open to responses from anyone, and no question may be
+made *Required* (the site can't see Google's reply, so a rejected response would be lost silently). Turn on
+*Responses → ⋮ → Get email notifications for new responses* to get an email for every message.
 
 To use a different backend instead, set `googleForm.action` to `''` and either leave everything empty (the form then opens
 the visitor's email app with a pre-filled message to the address in `site.ts`), or create a free form endpoint
@@ -58,7 +60,7 @@ The build output (`dist/`) is a static site, so it can be hosted anywhere.
   `www.hizarc.com` redirects to `hizarc.com` automatically.
 - DNS at GoDaddy (hizarc.com), already in place:
   `A  @  →  185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153` and `CNAME  www  →  hyzamat.github.io`.
-- To use a contact form endpoint, add a repo **variable** `VITE_CONTACT_ENDPOINT`
+- To use a contact form endpoint instead of the Google Form, empty `googleForm.action` in `site.ts` and add a repo **variable** `VITE_CONTACT_ENDPOINT`
   (*Settings → Secrets and variables → Actions → Variables*), then re-run the workflow.
 
 **Google search:** add `hizarc.com` as a *Domain* property in [Google Search Console](https://search.google.com/search-console),

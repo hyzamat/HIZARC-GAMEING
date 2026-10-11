@@ -32,7 +32,7 @@ jobs:
       - run: npm run build
         env:
           # Optional: set this repo variable (Settings → Secrets and variables → Actions → Variables)
-          # to send the contact form to Formspree/Web3Forms instead of opening the visitor's email app.
+          # to send the contact form to Formspree/Web3Forms. Only used when googleForm.action in src/config/site.ts is ''.
           VITE_CONTACT_ENDPOINT: ${{ vars.VITE_CONTACT_ENDPOINT }}
 
       - uses: actions/configure-pages@v6
