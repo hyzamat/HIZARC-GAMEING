@@ -1,0 +1,271 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   HIZARC GAMES — design tokens
+   Brand: Hizarc Blue (#0a7cff) + Navy (#06205a) from the logo,
+   pushed into a dark, cinematic "night arena" palette with
+   electric cyan / ultraviolet highlights and a rare volt accent.
+------------------------------------------------------------------- */
+@theme {
+  --font-display: 'Unbounded Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Surfaces (darkest -> lightest) */
+  --color-ink-950: #03050c; /* page background */
+  --color-ink-900: #070b17;
+  --color-ink-800: #0c1326; /* cards */
+  --color-ink-700: #131c36; /* raised cards / inputs */
+  --color-ink-600: #1c2747;
+  --color-ink-500: #2a3760;
+
+  /* Brand */
+  --color-navy: #06205a;
+  --color-brand: #0a7cff; /* Hizarc Blue — primary actions */
+  --color-brand-300: #7db9ff;
+  --color-brand-400: #3d9bff;
+  --color-brand-600: #0062d6;
+  --color-cyan: #2ee6ff; /* electric highlight */
+  --color-violet: #7c5cff; /* ultraviolet highlight */
+  --color-volt: #d7ff3a; /* rare accent: "NEW", live badges */
+  --color-ember: #ff5c39; /* rare accent: errors / hot */
+
+  /* Text */
+  --color-snow: #f4f7ff; /* primary text */
+  --color-mist: #aab5d3; /* secondary text */
+  --color-haze: #7b87ab; /* tertiary / meta — ≥ 5:1 on ink-800/950 */
+  --color-line: rgb(255 255 255 / 0.08); /* hairlines */
+  --color-line-strong: rgb(255 255 255 / 0.16);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 32s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 32s) linear infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.6s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @keyframes marquee-reverse {
+    from {
+      transform: translate3d(-50%, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -12px, 0);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-snow);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    min-height: 100svh;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+------------------------------------------------------------------- */
+
+/* Brand gradient text: blue -> cyan */
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--color-brand-400) 0%, var(--color-cyan) 55%, #b9f6ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ultraviolet -> blue -> cyan */
+@utility text-gradient-ultra {
+  background-image: linear-gradient(100deg, var(--color-violet) 0%, var(--color-brand-400) 45%, var(--color-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Outlined display text */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(244 247 255 / 0.35);
+}
+
+/* Frosted glass panel */
+@utility glass {
+  background-color: rgb(12 19 38 / 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--color-line);
+}
+
+/* Faint blueprint grid */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Dotted matrix */
+@utility bg-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Chamfered corners — echoes the angled cuts of the Hizarc "H" mark.
+   Use on cards, buttons and HUD tiles. --cut controls the size. */
+@utility chamfer {
+  clip-path: polygon(
+    var(--cut, 14px) 0,
+    100% 0,
+    100% calc(100% - var(--cut, 14px)),
+    calc(100% - var(--cut, 14px)) 100%,
+    0 100%,
+    0 var(--cut, 14px)
+  );
+}
+@utility chamfer-sm {
+  --cut: 8px;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}
+@utility chamfer-lg {
+  --cut: 28px;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}
+
+/* Hide scrollbars on horizontal scrollers while keeping them scrollable */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Soft mask that fades content out at the left/right edges (marquees, carousels) */
+@utility mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@utility mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent);
+}
+
+/* Safe-area padding for notched phones */
+@utility pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}

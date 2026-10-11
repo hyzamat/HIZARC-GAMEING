@@ -1,0 +1,96 @@
+/* ------------------------------------------------------------------
+   Games section helpers.
+   - Phone rail: cards ease toward the viewport edge (scale / dim / yaw),
+     driven by CSS variables the rail writes onto each card's <article> while
+     scrolling (--d = signed distance -1 → 1, --a = |distance| 0 → 1).
+   - Modal: chamfered clip shapes for the bottom sheet (phones) and the
+     centred panel (md+). Kept in CSS so the shape can change per breakpoint.
+   Transform / opacity only. prefers-reduced-motion switches depth off.
+------------------------------------------------------------------- */
+
+/* Registered without inheritance: updating them every scroll frame must not restyle the (large) art
+   SVG inside each card. Browsers without @property fall back to plain, inherited custom properties. */
+@property --d {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --a {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --f {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@media (max-width: 639.98px) {
+  .games-rail > li > article {
+    transform: perspective(900px) rotateY(calc(var(--d, 0) * -7deg)) scale(calc(1 - var(--a, 0) * 0.07));
+    opacity: calc(1 - var(--a, 0) * 0.5);
+    transform-origin: 50% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .games-rail > li > article {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Panel frame: phones cut both top corners, md+ cuts top-left and bottom-right.
+   --cut falls back to 28px so a Tailwind `[--cut:27px]` utility can still override it. */
+.gm-clip {
+  clip-path: polygon(
+    var(--cut, 28px) 0,
+    calc(100% - var(--cut, 28px)) 0,
+    100% var(--cut, 28px),
+    100% 100%,
+    0 100%,
+    0 var(--cut, 28px)
+  );
+}
+
+/* Key-art header: only the corners that sit on the panel's cut corners. */
+.gm-art-clip {
+  clip-path: polygon(
+    var(--cut, 28px) 0,
+    calc(100% - var(--cut, 28px)) 0,
+    100% var(--cut, 28px),
+    100% 100%,
+    0 100%,
+    0 var(--cut, 28px)
+  );
+}
+
+@media (min-width: 768px) {
+  .gm-clip {
+    clip-path: polygon(
+      var(--cut, 28px) 0,
+      100% 0,
+      100% calc(100% - var(--cut, 28px)),
+      calc(100% - var(--cut, 28px)) 100%,
+      0 100%,
+      0 var(--cut, 28px)
+    );
+  }
+  .gm-art-clip {
+    clip-path: polygon(var(--cut, 28px) 0, 100% 0, 100% 100%, 0 100%, 0 var(--cut, 28px));
+  }
+}
+
+/* md+: trim the scrolling body at the panel's cut bottom-right corner so the scrollbar can't poke out. */
+@media (min-width: 768px) {
+  .gm-body-clip {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 27px), calc(100% - 27px) 100%, 0 100%);
+  }
+}
+
+/* Slim scrollbar for the modal body (desktop). */
+.gm-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+}

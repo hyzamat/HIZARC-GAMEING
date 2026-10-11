@@ -1,0 +1,217 @@
+/* ------------------------------------------------------------------
+   Hero + ticker keyframes.
+   Transform / opacity only (one exception: the headline sheen, which
+   repaints a single word), so every infinite loop stays on the
+   compositor and cheap on phones. Used through Tailwind arbitrary
+   animations, e.g. `animate-[hz-drift-a_24s_ease-in-out_infinite]`.
+   prefers-reduced-motion is handled globally in src/index.css.
+------------------------------------------------------------------- */
+
+/* Background glows: slow, out-of-phase drifts */
+@keyframes hz-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-8%, 6%, 0) scale(1.1);
+  }
+}
+
+@keyframes hz-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(9%, -6%, 0) scale(0.92);
+  }
+}
+
+@keyframes hz-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(5%, -7%, 0) scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Arena floor: the grid layer slides exactly one cell (64px) toward the viewer, then loops seamlessly */
+@keyframes hz-floor {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 64px, 0);
+  }
+}
+
+/* Soft "breathing" for auras and the horizon glow */
+@keyframes hz-breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+/* A light segment travelling along a hairline */
+@keyframes hz-scan {
+  from {
+    transform: translate3d(-110%, 0, 0);
+  }
+  to {
+    transform: translate3d(230%, 0, 0);
+  }
+}
+
+/* Vertical version of the scan: the scroll cue's falling light */
+@keyframes hz-drop {
+  0% {
+    transform: translate3d(0, -110%, 0);
+  }
+  70%,
+  100% {
+    transform: translate3d(0, 230%, 0);
+  }
+}
+
+/* Counter-rotation for HUD rings */
+@keyframes hz-spin-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Touch devices: the emblem pieces bob gently on their own */
+@keyframes hz-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -2.2%, 0);
+  }
+}
+
+@keyframes hz-bob-alt {
+  0%,
+  100% {
+    transform: translate3d(0, -1.2%, 0) rotate(0.5deg);
+  }
+  50% {
+    transform: translate3d(0.8%, 1.2%, 0) rotate(-0.5deg);
+  }
+}
+
+/* Touch devices: the whole emblem sways in 3D (parent sets perspective) */
+@keyframes hz-sway {
+  0%,
+  100% {
+    transform: rotateY(-10deg) rotateX(4deg);
+  }
+  50% {
+    transform: rotateY(10deg) rotateX(-3deg);
+  }
+}
+
+/* "Now playing" equaliser bars */
+@keyframes hz-eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Shooting light streaks along the logo's 28° slant (element is rotated; this moves it along its own axis) */
+@keyframes hz-streak {
+  0% {
+    transform: translate3d(-120%, 0, 0);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  26% {
+    transform: translate3d(340%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(340%, 0, 0);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Headline highlight ("playing."): brand gradient text with a white
+   light band that sweeps across it every few seconds. Two background
+   layers — the band (animated) over the static gradient — both
+   clipped to the glyphs. The band starts and ends off-glyph, so the
+   loop restart is invisible.
+------------------------------------------------------------------- */
+.hz-hl {
+  background-image:
+    linear-gradient(100deg, transparent 42%, rgb(255 255 255 / 0.95) 50%, transparent 58%),
+    linear-gradient(100deg, var(--color-brand-400) 0%, var(--color-cyan) 55%, #b9f6ff 100%);
+  background-size:
+    300% 100%,
+    100% 100%;
+  background-position:
+    100% 0,
+    0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hz-hl-live {
+  animation: hz-sheen 7s cubic-bezier(0.65, 0, 0.35, 1) 1.5s infinite;
+}
+
+@keyframes hz-sheen {
+  0% {
+    background-position:
+      100% 0,
+      0 0;
+  }
+  26%,
+  100% {
+    background-position:
+      0% 0,
+      0 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Once the hero has scrolled out of view every CSS loop inside it is
+   frozen (the section gets .hz-paused), so nothing animates off-screen.
+------------------------------------------------------------------- */
+.hz-paused,
+.hz-paused *,
+.hz-paused *::before,
+.hz-paused *::after {
+  animation-play-state: paused !important;
+}
+
+/* Ticker: a slanted light bar crossing the blue band, then resting off-screen */
+@keyframes hz-shine {
+  0% {
+    transform: translate3d(-120%, 0, 0);
+  }
+  55%,
+  100% {
+    transform: translate3d(440%, 0, 0);
+  }
+}

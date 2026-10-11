@@ -1,0 +1,14 @@
+node_modules
+dist
+.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db
+android-apk/build/
+android-apk/out/
+*.keystore
+# Phone test captures (screenshots, device logs): kept locally, not published
+android-apk/test-report/
+# Local Claude workflow scripts (contain machine-specific paths)
+.claude/workflows/
