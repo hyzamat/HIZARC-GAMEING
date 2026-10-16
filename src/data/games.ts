@@ -31,6 +31,8 @@ export interface ArtPalette {
 }
 
 export interface StoreLinks {
+  /** The game's own website (a normal, crawlable link). */
+  site?: string
   appStore?: string
   playStore?: string
   steam?: string
@@ -48,6 +50,8 @@ export interface Game {
   platforms: Platform[]
   engine: Engine
   year: number
+  /** Not out yet: shown instead of the release year, e.g. 'Coming soon'. */
+  releaseStatus?: string
   /** e.g. 4.8 */
   rating?: number
   /** e.g. '5M+' */
@@ -56,6 +60,8 @@ export interface Game {
   palette: ArtPalette
   motif: ArtMotif
   image?: string
+  /** Describes `image` for screen readers and image search. */
+  imageAlt?: string
   links: StoreLinks
   /** Shown big in the spotlight slot. Exactly one game should be featured. */
   featured?: boolean
@@ -108,6 +114,27 @@ export const platformLabels: Record<Platform, string> = {
 
 export const games: Game[] = [
   {
+    slug: 'depth-city',
+    title: 'DEPTH CITY',
+    tagline: 'Open-world city building game with an avatar Mayor mode and war — Android, iOS & PC. Coming soon.',
+    description:
+      'DEPTH CITY is an open-world city building game with a real economy, a living world and a war to win. Build your island city, step into it as the Mayor and walk, drive and fly through the streets you built, and defend it when rival nations come from the sea.',
+    genre: 'Open-world City Builder',
+    category: 'Strategy',
+    platforms: ['android', 'ios', 'pc'],
+    engine: 'Unity',
+    year: 2026,
+    releaseStatus: 'Coming soon',
+    features: ['Build from above, then walk your streets', 'Live in your city as the Mayor', 'War against nine rival nations', '170+ buildings, 125 city levels'],
+    palette: { from: '#04101f', via: '#0e5aa8', to: '#f2b544', accent: '#9be7ff' },
+    motif: 'skyline',
+    image: '/games/depth-city-top-view.webp',
+    imageAlt: 'Top view of an island city in DEPTH CITY: downtown towers, streets, parks and beaches built by the player',
+    links: { site: 'https://depthcity.hizarc.com/' },
+    featured: true,
+    badge: 'Coming soon',
+  },
+  {
     slug: 'voltrush',
     title: 'VOLTRUSH',
     tagline: 'Outrun the grid.',
@@ -124,8 +151,6 @@ export const games: Game[] = [
     palette: { from: '#12042e', via: '#6d1bff', to: '#ff2fb1', accent: '#2ee6ff' },
     motif: 'grid',
     links: { appStore: '#', playStore: '#', trailer: '#' },
-    featured: true,
-    badge: 'Featured',
   },
   {
     slug: 'sandstorm-protocol',

@@ -7,6 +7,7 @@ import { Container } from '@/components/ui/Container'
 import { EASE_OUT, staggerChild, staggerParent } from '@/components/ui/Reveal'
 import { socialIcons } from '@/components/ui/icons'
 import { nav, site } from '@/config/site'
+import { games } from '@/data/games'
 import { contactHref } from '@/lib/contact'
 import { scrollToTarget } from '@/lib/scroll'
 import { FooterWordmark } from './FooterWordmark'
@@ -20,6 +21,9 @@ const studioLinks = [
   { label: 'Partner with us', href: contactHref('Partnership') },
   { label: 'Player support', href: contactHref('Player Support') },
 ] as const
+
+/** Games with their own website (links.site in data/games.ts), listed under Explore after the page sections. */
+const gameSites = games.flatMap((g) => (g.links.site ? [{ label: g.title, href: g.links.site }] : []))
 
 /** Column title: mono HUD label over a hairline with a 28° brand slice. The [index] sits beside the <h3> so the heading text is just the title. */
 function ColumnTitle({ index, children }: { index: string; children: ReactNode }) {
@@ -188,6 +192,13 @@ export function Footer() {
               {nav.map((item, i) => (
                 <li key={item.href}>
                   <FooterLink href={item.href} index={navIndex(i)}>
+                    {item.label}
+                  </FooterLink>
+                </li>
+              ))}
+              {gameSites.map((item, i) => (
+                <li key={item.href}>
+                  <FooterLink href={item.href} index={navIndex(nav.length + i)}>
                     {item.label}
                   </FooterLink>
                 </li>

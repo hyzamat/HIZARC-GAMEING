@@ -14,6 +14,7 @@ type StoreDef = {
 
 /** Display order of the store buttons. */
 const STORES: StoreDef[] = [
+  { key: 'site', kicker: 'Visit the', label: 'Official site', Icon: Globe },
   { key: 'appStore', kicker: 'Download on the', label: 'App Store', Icon: AppleGlyph },
   { key: 'playStore', kicker: 'Get it on', label: 'Google Play', Icon: PlayGlyph },
   { key: 'steam', kicker: 'Get it on', label: 'Steam', Icon: SteamGlyph },

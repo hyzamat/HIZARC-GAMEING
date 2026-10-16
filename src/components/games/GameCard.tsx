@@ -111,7 +111,7 @@ export function GameCard({ game, revealed, delay, elevated = false, onOpen, clas
           className="relative m-px mb-0 aspect-[16/10] overflow-hidden [clip-path:polygon(13px_0,100%_0,100%_100%,0_100%,0_13px)]"
         >
           <span className="absolute inset-0 transition-transform duration-[1.1s] ease-out-expo group-hover:scale-[1.07]">
-            <GameArt palette={game.palette} motif={game.motif} seed={game.slug} image={game.image} className="absolute inset-0" />
+            <GameArt palette={game.palette} motif={game.motif} seed={game.slug} image={game.image} alt={game.imageAlt} className="absolute inset-0" />
           </span>
           <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink-800 via-ink-800/35 to-transparent" />
           <span className="absolute top-3 left-3 flex flex-wrap gap-1.5 sm:top-4 sm:left-4">
@@ -128,7 +128,7 @@ export function GameCard({ game, revealed, delay, elevated = false, onOpen, clas
         {/* body */}
         <div className="flex flex-1 flex-col px-5 pt-1 pb-5 sm:px-6 sm:pb-6">
           <p className="font-mono text-[0.66rem] tracking-[0.22em] text-haze uppercase">
-            {game.genre} <span className="text-white/20">/</span> {game.year}
+            {game.genre} <span className="text-white/20">/</span> {game.releaseStatus ?? game.year}
           </p>
           <h3 className="mt-2 font-display text-[1.3rem] leading-tight font-bold tracking-[-0.01em] text-snow sm:text-[1.4rem]">
             <button

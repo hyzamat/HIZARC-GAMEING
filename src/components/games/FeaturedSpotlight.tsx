@@ -93,13 +93,14 @@ export function FeaturedSpotlight({ game, number, total, onOpen, className }: Fe
       <div className="relative overflow-hidden bg-ink-900 chamfer [--cut:20px] sm:[--cut:28px]">
         <div className="relative flex aspect-[4/5] flex-col justify-end sm:aspect-[4/3] md:aspect-[16/10] xl:aspect-[21/9]">
           {/* art: scroll-parallax layer › cursor-lean layer › zoom-settle layer (side bleed hides the lean's edges) */}
-          <motion.div aria-hidden className="absolute -inset-x-[4%] -top-[12%] -bottom-[12%]" style={{ y: artY }}>
+          {/* real artwork stays visible to screen readers and image search (via its alt); generated art is decoration */}
+          <motion.div aria-hidden={!game.image} className="absolute -inset-x-[4%] -top-[12%] -bottom-[12%]" style={{ y: artY }}>
             <motion.div className="absolute inset-0" style={lean ? { x: leanX, y: leanY } : undefined}>
               <motion.div
                 className="absolute inset-0"
                 variants={{ hidden: { scale: 1.2 }, show: { scale: 1, transition: { duration: 2.2, ease: EASE_OUT, delay: 0.15 } } }}
               >
-                <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} className="absolute inset-0" />
+                <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} alt={game.imageAlt} className="absolute inset-0" />
               </motion.div>
             </motion.div>
           </motion.div>
@@ -168,7 +169,7 @@ export function FeaturedSpotlight({ game, number, total, onOpen, className }: Fe
 
             <motion.div variants={rise} className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2.5 sm:mt-5">
               <p className="font-mono text-[0.68rem] tracking-[0.2em] text-mist uppercase">
-                {game.genre} <span className="text-white/25">·</span> {game.engine} <span className="text-white/25">·</span> {game.year}
+                {game.genre} <span className="text-white/25">·</span> {game.engine} <span className="text-white/25">·</span> {game.releaseStatus ?? game.year}
               </p>
               <span aria-hidden className="hidden h-3 w-px bg-line-strong sm:block" />
               <PlatformIcons platforms={game.platforms} className="text-snow/80" />

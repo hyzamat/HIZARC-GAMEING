@@ -89,7 +89,7 @@ function metaCells(game: Game): MetaCell[] {
     { label: 'Genre', value: game.genre },
     { label: 'Engine', value: game.engine },
     { label: 'Platforms', value: platformText(game.platforms) },
-    { label: 'Released', value: String(game.year) },
+    game.releaseStatus ? { label: 'Release', value: game.releaseStatus } : { label: 'Released', value: String(game.year) },
     game.rating != null ? { label: 'Rating', value: `${game.rating.toFixed(1)} / 5`, star: true } : null,
     game.players ? { label: 'Players', value: game.players } : null,
   ]
@@ -248,7 +248,7 @@ function ModalLayer({ game, sharedArt, openerRef, onClose }: LayerProps) {
               animate={{ scale: 1 }}
               transition={{ duration: 1.6, ease: EASE_OUT }}
             >
-              <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} className="absolute inset-0" />
+              <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} alt={game.imageAlt} className="absolute inset-0" />
             </motion.div>
             <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-ink-900/10" />
           </motion.div>

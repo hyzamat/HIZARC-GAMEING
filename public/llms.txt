@@ -10,6 +10,10 @@
 - Platforms: iOS, Android, PC, Web / WebGL, Console, AR / VR
 - Contact: shainal@hizarc.com
 
+## Games
+
+- [DEPTH CITY](https://depthcity.hizarc.com/): open-world city building game with an avatar Mayor mode and war, for Android, iOS and PC. Coming soon. Made by HIZARC Games in Unity.
+
 ## Website sections
 
 - [Home](https://hizarc.com/): studio overview and headline
