@@ -32,6 +32,7 @@ function gameNodes(home: string, organization: { '@id': string }) {
         gamePlatform: g.platforms.map((p) => platformLabels[p]),
         applicationCategory: 'Game',
         publisher: organization,
+        ...(g.profiles?.length && { sameAs: g.profiles }),
       },
     ]
   })

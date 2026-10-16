@@ -27,7 +27,7 @@ function CatalogueCount() {
       <span className="font-mono text-[0.68rem] leading-relaxed tracking-[0.25em] text-haze uppercase">
         Titles
         <br />
-        shipped
+        in the studio
       </span>
     </div>
   )
@@ -68,7 +68,10 @@ export function Games() {
   const options = useMemo(
     () => [
       { value: 'All' as const, count: games.length },
-      ...categories.map((c) => ({ value: c as GameFilter, count: games.filter((g) => g.category === c).length })),
+      ...categories
+        .map((c) => ({ value: c as GameFilter, count: games.filter((g) => g.category === c).length }))
+        // only categories that have a game, so no chip leads to an empty shelf
+        .filter((o) => o.count > 0),
     ],
     [],
   )
@@ -113,7 +116,7 @@ export function Games() {
             style={{ x: wordX }}
             className="absolute top-[42%] left-0 font-display text-[clamp(5rem,19vw,17rem)] leading-none font-black tracking-[-0.04em] whitespace-nowrap text-outline opacity-40 select-none"
           >
-            ARCADE · ACTION · STRATEGY · CASUAL · ARCADE · ACTION
+            CITY BUILDING · DRIVING · OPEN WORLD · STRATEGY · SIMULATION
           </motion.p>
           <span className="absolute top-0 left-[7%] h-full w-px -skew-x-[28deg] bg-gradient-to-b from-transparent via-white/[0.07] to-transparent" />
           <span className="absolute top-0 right-[9%] hidden h-full w-px -skew-x-[28deg] bg-gradient-to-b from-transparent via-white/[0.07] to-transparent sm:block" />
@@ -123,8 +126,8 @@ export function Games() {
           <SectionHeading
             index="01"
             eyebrow="Our Games"
-            title={"Worlds we've\n*already* shipped."}
-            description="Neon racers, tactical shooters and cozy tycoons. Original games built in-house with Unity and Unreal, played by millions in 140+ countries."
+            title={"Worlds we're\n*building* now."}
+            description="An open-world city builder and an open-world driving game, built in-house in Unity for Android, iOS and PC."
             aside={desktop ? <CatalogueCount /> : undefined}
           />
 

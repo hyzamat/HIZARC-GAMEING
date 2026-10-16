@@ -12,7 +12,18 @@
 
 ## Games
 
-- [DEPTH CITY](https://depthcity.hizarc.com/): open-world city building game with an avatar Mayor mode and war, for Android, iOS and PC. Coming soon. Made by HIZARC Games in Unity.
+- [DEPTH CITY](https://depthcity.hizarc.com/): open-world city building game with an avatar Mayor mode and war, for Android, iOS and PC. Coming soon. Made by HIZARC Games in Unity. Instagram: https://www.instagram.com/depthcitygame/
+- Born to Drive: realistic open-world driving game on the hill roads of Kerala's Western Ghats; cars, buses, trucks and off-roaders with real physics and damage. Android, iOS and PC. Coming soon. Made in Unity.
+
+## In development
+
+- DEPTH CITY 2: the sequel to DEPTH CITY (concept stage).
+- Born to Drive 2: the sequel to Born to Drive (concept stage).
+- Red Earth Outlaw: Western Ghats (REO: Western Ghats): an open-world outlaw adventure set in India's Western Ghats (concept stage).
+
+## Channels
+
+- YouTube (HIZARC GAMES): https://www.youtube.com/channel/UCKEboiAx3RlNnGgybci8lng
 
 ## Website sections
 

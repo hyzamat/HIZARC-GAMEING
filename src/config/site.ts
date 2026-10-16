@@ -71,7 +71,7 @@ export type SocialKey = 'discord' | 'x' | 'youtube' | 'instagram' | 'tiktok' | '
 export const socials: { key: SocialKey; label: string; href: string }[] = [
   { key: 'discord', label: 'Discord', href: '#' },
   { key: 'x', label: 'X (Twitter)', href: '#' },
-  { key: 'youtube', label: 'YouTube', href: '#' },
+  { key: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/channel/UCKEboiAx3RlNnGgybci8lng' },
   { key: 'instagram', label: 'Instagram', href: '#' },
   { key: 'tiktok', label: 'TikTok', href: '#' },
   { key: 'linkedin', label: 'LinkedIn', href: '#' },

@@ -78,7 +78,7 @@ export function UpcomingCard({ game, index, total, live = true, artY, artScale, 
       <article aria-labelledby={titleId} className="relative isolate flex flex-1 flex-col overflow-hidden bg-ink-900 chamfer [--cut:19.5px] lg:[--cut:29.5px]">
         {/* ---------- key art + legibility layers ---------- */}
         <motion.div aria-hidden className={cn('absolute inset-0 -z-10', artY && 'will-change-transform')} style={artY ? { y: artY, scale: artScale } : undefined}>
-          <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} animated={live} className="absolute inset-0" />
+          <GameArt palette={palette} motif={game.motif} seed={game.slug} image={game.image} alt={game.imageAlt} animated={live} className="absolute inset-0" />
         </motion.div>
         <div aria-hidden className="absolute inset-0 -z-10 bg-[repeating-linear-gradient(0deg,rgb(255_255_255/0.035)_0_1px,transparent_1px_3px)]" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/80 to-ink-950/0 lg:via-ink-950/50" />

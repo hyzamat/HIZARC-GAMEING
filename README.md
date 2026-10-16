@@ -18,7 +18,7 @@ Requires [Node.js](https://nodejs.org) 20+ (LTS). The first run installs depende
 Everything you'll want to change lives in two files — no component code needed:
 
 - **`src/config/site.ts`**: contact email, location, social links, headline stats (**placeholder numbers, so replace them**), contact topics.
-- **`src/data/games.ts`**: released games and upcoming games (**placeholder titles, so replace them**).
+- **`src/data/games.ts`**: released games and upcoming games.
   - Every game gets animated, procedurally generated key art from its `palette` + `motif`.
     When you have real artwork, put it in `public/games/` and set `image: '/games/my-game.webp'` (+ `imageAlt`).
   - Store links: set `site`, `appStore`, `playStore`, `steam`, `web`, `trailer`. Remove a link to hide its button.
