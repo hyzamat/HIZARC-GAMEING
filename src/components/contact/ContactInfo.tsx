@@ -124,7 +124,7 @@ export function ContactInfo({ className }: { className?: string }) {
               {site.email}
             </a>
           }
-          meta="Partnerships, press & support — one inbox."
+          meta="Business, press & support — one inbox."
           action={<CopyButton text={site.email} label={`Copy email address ${site.email}`} />}
         />
         <InfoCard

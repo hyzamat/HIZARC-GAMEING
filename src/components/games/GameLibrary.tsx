@@ -5,7 +5,7 @@ import type { Game } from '@/data/games'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/cn'
 import { GameCard } from './GameCard'
-import { PartnerCard } from './PartnerCard'
+import { LabCard } from './LabCard'
 import { pad2, type GameFilter } from './shared'
 import './games.css'
 
@@ -42,7 +42,7 @@ export function GameLibrary({ items, filter, liftedSlug, onOpen }: GameLibraryPr
   const isGrid = useMediaQuery('(min-width: 640px)')
   const [active, setActive] = useState(0)
 
-  const slides = [...items.map((g) => ({ key: g.slug, label: g.title })), { key: 'partner', label: 'Partner with us' }]
+  const slides = [...items.map((g) => ({ key: g.slug, label: g.title })), { key: 'lab', label: 'Games in development' }]
 
   /** Read the rail's scroll position → depth variables, progress fills and the active index. */
   const sync = useCallback(() => {
@@ -174,7 +174,7 @@ export function GameLibrary({ items, filter, liftedSlug, onOpen }: GameLibraryPr
             />
           ))}
         </AnimatePresence>
-        <PartnerCard revealed={revealed} delay={Math.min(items.length, 5) * 0.08} className={RAIL_ITEM} />
+        <LabCard revealed={revealed} delay={Math.min(items.length, 5) * 0.08} className={RAIL_ITEM} />
       </motion.ul>
 
       {/* phones: segmented progress + counter */}

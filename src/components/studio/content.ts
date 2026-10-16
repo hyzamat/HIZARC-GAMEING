@@ -1,4 +1,4 @@
-import { Gamepad2, Glasses, Globe, Smartphone, Sparkles, Swords, type LucideIcon } from 'lucide-react'
+import { Gamepad2, Glasses, Globe, MapIcon, Smartphone, Sparkles, type LucideIcon } from 'lucide-react'
 import type { TargetAndTransition } from 'framer-motion'
 
 /* ---------------------------------------------------------------- */
@@ -7,7 +7,7 @@ import type { TargetAndTransition } from 'framer-motion'
 
 /** `*…*` marks the words that get the brand gradient. Keep highlights whitespace-delimited. */
 export const manifesto =
-  'HIZARC Games is the game studio of HIZARC — a technology company from *Calicut, Kerala, India.* We design *original worlds* and co-develop with brands and publishers, shipping on *mobile, PC, web, console and XR* with Unity and Unreal Engine. *Every frame is built to be felt.*'
+  'HIZARC Games is the game studio of HIZARC — a technology company from *Calicut, Kerala, India.* We make *our own games:* open worlds you can build, drive and live in, for *Android, iOS and PC.* *Every frame is built to be felt.*'
 
 export type Capability = {
   title: string
@@ -30,10 +30,10 @@ export const capabilities: Capability[] = [
     hover: { rotate: [0, 16, -10, 0], scale: [1, 1.25, 0.95, 1], transition: { duration: 0.8, ease } },
   },
   {
-    title: 'Co-development & work-for-hire',
-    text: 'Embedded squads that plug into your pipeline — from full builds to gameplay, tools and tech art on tight timelines.',
-    tags: ['Full builds', 'Tech art', 'Porting'],
-    Icon: Swords,
+    title: 'Open worlds',
+    text: 'A city you build and then walk through as its Mayor, hill roads you drive for real: every game we make is a living open world.',
+    tags: ['City building', 'Driving', 'Physics'],
+    Icon: MapIcon,
     hover: { rotate: [0, -14, 10, 0], scale: [1, 1.18, 1], transition: { duration: 0.7, ease } },
   },
   {
@@ -59,7 +59,7 @@ export const capabilities: Capability[] = [
   },
   {
     title: 'AR / VR experiences',
-    text: 'Spatial games, hand-tracked interactions and immersive brand moments for headsets and phones.',
+    text: 'Spatial games and hand-tracked interactions for headsets and phones.',
     tags: ['Headsets', 'Hand tracking', 'Spatial'],
     Icon: Glasses,
     hover: { scaleX: [1, 1.22, 1], y: [0, -3, 0], transition: { duration: 0.7, ease } },
@@ -94,7 +94,7 @@ export const pillars = [
     n: '02',
     kicker: 'How we build',
     title: 'Craft over noise',
-    text: 'Small senior squads and obsessive polish on feel, sound and motion. One game players love beats ten they forget.',
+    text: 'A small team and obsessive polish on feel, sound and motion. One game players love beats ten they forget.',
   },
   {
     n: '03',

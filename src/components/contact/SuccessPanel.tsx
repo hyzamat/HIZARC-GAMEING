@@ -192,7 +192,6 @@ export function SuccessPanel({ via, payload, onReset }: SuccessPanelProps) {
           <Tag tone="brand" dot>
             {payload.topic}
           </Tag>
-          {payload.budget && <Tag tone="violet">{payload.budget}</Tag>}
           {payload.company && (
             <Tag className="max-w-full">
               <span className="min-w-0 truncate">{payload.company}</span>

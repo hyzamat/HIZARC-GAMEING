@@ -109,7 +109,9 @@ export function buildStructuredData(page: { title: string; description: string }
           'WebGL games',
           'Augmented reality',
           'Virtual reality',
-          'Game co-development',
+          'Open-world games',
+          'City-building games',
+          'Driving games',
           ...engines,
         ],
         contactPoint: [

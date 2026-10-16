@@ -34,8 +34,8 @@ export function Contact() {
           <SectionHeading
             index="04"
             eyebrow="Reach Out"
-            title={"Let's build\nsomething *legendary.*"}
-            description="Partnerships, publishing, press, careers or player support — tell us what you're working on and the right person will get back to you."
+            title={"Talk to\nthe *studio.*"}
+            description="Business, press, careers or player support — questions about DEPTH CITY, Born to Drive or the studio all land in the same inbox."
           />
         </div>
 

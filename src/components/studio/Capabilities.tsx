@@ -13,7 +13,7 @@ export function Capabilities({ className }: { className?: string }) {
     <div className={className}>
       <SubHeading
         label="Capabilities"
-        title="What we *do.*"
+        title="What we *make.*"
         aside="Six ways we turn ideas into games people can't put down — alone or as an extension of your team."
       />
       <ul className="mt-9 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">

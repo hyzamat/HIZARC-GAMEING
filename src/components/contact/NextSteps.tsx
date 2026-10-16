@@ -4,12 +4,12 @@ import { cn } from '@/lib/cn'
 
 const STEPS = [
   {
-    title: 'Brief us',
-    body: 'A few lines is plenty. Links to a deck, build, trailer or portfolio help us move faster.',
+    title: 'Write to us',
+    body: 'A few lines is plenty. Links to screenshots, an article or a portfolio help us answer faster.',
   },
   {
-    title: 'We route it',
-    body: 'Your message goes straight to the lead for partnerships, publishing, press, talent or player support.',
+    title: 'We read it',
+    body: 'Your message goes straight to the person who handles business, press, careers or player support.',
   },
   {
     title: 'A human replies',

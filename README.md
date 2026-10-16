@@ -36,7 +36,7 @@ form's *Responses* tab (click *Link to Sheets* there to collect them in a spread
 | --- | --- |
 | Name | Operative Alias (`entry.1192359696`) |
 | Email | Comms Link Frequency (`entry.1865750333`) |
-| Topic, company, budget + message | Encrypted Payload (`entry.1660048100`) |
+| Topic, company + message | Encrypted Payload (`entry.1660048100`) |
 | Date sent (IST) | Authorization Timestamp (`entry.2075667364`) |
 
 Renaming the questions in Google Forms is safe (the entry ids stay the same). Deleting a question or changing its type

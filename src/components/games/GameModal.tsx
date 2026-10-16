@@ -171,13 +171,13 @@ function ModalLayer({ game, sharedArt, openerRef, onClose }: LayerProps) {
     }
   }, [isPresent, onClose, openerRef])
 
-  // "Want a game like this?" → close first, then glide to the contact form.
-  const goPartner = (e: MouseEvent<HTMLAnchorElement>) => {
+  // "What's next from the studio?" → close first, then glide to the games in development.
+  const goUpcoming = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     onClose()
     window.setTimeout(() => {
-      scrollToTarget('#contact')
-      history.replaceState(null, '', '#contact')
+      scrollToTarget('#upcoming')
+      history.replaceState(null, '', '#upcoming')
     }, 160)
   }
 
@@ -366,19 +366,19 @@ function ModalLayer({ game, sharedArt, openerRef, onClose }: LayerProps) {
               </motion.dl>
             </div>
 
-            {/* partner CTA */}
+            {/* what's-next CTA */}
             <motion.a
               variants={rise}
-              href="#contact"
-              onClick={goPartner}
+              href="#upcoming"
+              onClick={goUpcoming}
               className="group order-5 flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between md:order-none md:col-span-2"
             >
               <span className="min-w-0">
-                <span className="block font-display text-base font-bold text-snow sm:text-lg">Want a game like this?</span>
-                <span className="mt-1 block text-sm text-mist">We co-develop and publish with brands and studios worldwide.</span>
+                <span className="block font-display text-base font-bold text-snow sm:text-lg">What&apos;s next from the studio?</span>
+                <span className="mt-1 block text-sm text-mist">Sequels and a brand-new open world are already in development.</span>
               </span>
               <span className="inline-flex h-12 shrink-0 items-center justify-center gap-2.5 bg-brand px-6 font-display text-[0.72rem] font-semibold tracking-[0.08em] text-white uppercase shadow-[0_10px_40px_-10px_rgba(10,124,255,0.75)] transition-colors duration-300 chamfer-sm group-hover:bg-brand-400">
-                Partner with us
+                See upcoming games
                 <ArrowRight aria-hidden className="size-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.4} />
               </span>
             </motion.a>

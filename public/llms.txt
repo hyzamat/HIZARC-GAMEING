@@ -1,6 +1,6 @@
 # HIZARC Games
 
-> HIZARC Games (also written Hizarc Games) is the game studio of HIZARC, a technology company from Calicut (Kozhikode), Kerala, India. The studio builds original games for mobile, PC, web, console and XR (AR/VR) in Unity and Unreal Engine, and co-develops games with brands and publishers worldwide. Official website: https://hizarc.com
+> HIZARC Games (also written Hizarc Games) is the game studio of HIZARC, a technology company from Calicut (Kozhikode), Kerala, India. The studio makes its own original games (it does not do client or work-for-hire projects): open-world games for Android, iOS and PC, made in Unity. Official website: https://hizarc.com
 
 - Name: HIZARC Games
 - Website: https://hizarc.com
@@ -28,8 +28,8 @@
 ## Website sections
 
 - [Home](https://hizarc.com/): studio overview and headline
-- [Games](https://hizarc.com/#games): released games and partner projects
+- [Games](https://hizarc.com/#games): our games, DEPTH CITY and Born to Drive
 - [Upcoming](https://hizarc.com/#upcoming): games in development
 - [Arcade](https://hizarc.com/#arcade): a free browser mini-game, HIZARC DASH
 - [Studio](https://hizarc.com/#studio): who we are, what we build, engines and careers
-- [Contact](https://hizarc.com/#contact): partnerships, publishing, co-development, press, careers and player support
+- [Contact](https://hizarc.com/#contact): business, press, careers and player support

@@ -13,7 +13,7 @@ export const site = {
   parentUrl: 'https://dev.hizarc.com',
   tagline: 'We build worlds worth playing.',
   description:
-    'HIZARC Games is the game studio of HIZARC. From Calicut, Kerala, India, we craft original games for mobile, PC, web and XR in Unity and Unreal Engine, and co-develop with brands and publishers worldwide.',
+    'HIZARC Games is the game studio of HIZARC in Calicut, Kerala, India. We make our own games: DEPTH CITY, an open-world city building game, and Born to Drive, an open-world driving game, for Android, iOS and PC.',
 
   /** Where the contact form + "email us" buttons point. */
   email: 'shainal@hizarc.com',
@@ -44,7 +44,7 @@ export const site = {
       name: 'entry.1192359696',
       /** Short answer — "Comms Link Frequency" */
       email: 'entry.1865750333',
-      /** Paragraph — "Encrypted Payload": topic, company, budget and the message itself */
+      /** Paragraph — "Encrypted Payload": topic, company and the message itself */
       message: 'entry.1660048100',
       /** Date (no time) — "Authorization Timestamp": the day it was sent, studio time */
       date: 'entry.2075667364',
@@ -78,26 +78,19 @@ export const socials: { key: SocialKey; label: string; href: string }[] = [
 ]
 
 /**
- * Headline numbers for the stats band.
- * PLACEHOLDER VALUES — replace with your real numbers before launch.
+ * Headline numbers for the stats band. Only true facts: update them when a game ships
+ * (players, countries and ratings can come once there are real numbers to show).
  * `value` is animated (counted up); `prefix` / `suffix` are static.
  */
 export const stats: { value: number; decimals?: number; prefix?: string; suffix?: string; label: string; detail: string }[] = [
-  { value: 12, suffix: 'M+', label: 'Players reached', detail: 'across every title we have shipped' },
-  { value: 140, suffix: '+', label: 'Countries', detail: 'with active daily players' },
-  { value: 4.8, decimals: 1, suffix: '★', label: 'Average rating', detail: 'on the App Store & Google Play' },
-  { value: 30, suffix: '+', label: 'Projects delivered', detail: 'original IP and partner games' },
+  { value: 2, label: 'Games coming soon', detail: 'DEPTH CITY and Born to Drive' },
+  { value: 3, label: 'Games in development', detail: 'DEPTH CITY 2, Born to Drive 2 and Red Earth Outlaw' },
+  { value: 3, label: 'Platforms', detail: 'Android, iOS and PC' },
+  { value: 170, suffix: '+', label: 'Buildings in DEPTH CITY', detail: 'in 11 categories, across 125 city levels' },
 ]
 
 /** Reasons people reach out — used by the contact form topic chips. */
-export const contactTopics = [
-  'Partnership',
-  'Publishing',
-  'Co-development',
-  'Press & Media',
-  'Careers',
-  'Player Support',
-] as const
+export const contactTopics = ['Business', 'Press & Media', 'Careers', 'Player Support'] as const
 
 export type ContactTopic = (typeof contactTopics)[number]
 

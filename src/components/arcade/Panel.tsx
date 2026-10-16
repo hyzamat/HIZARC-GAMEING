@@ -118,12 +118,12 @@ export function ArcadeCta() {
               Built by {site.name}
             </p>
             <p className="mt-3 font-display text-[clamp(1.15rem,4.6vw,1.75rem)] leading-[1.15] font-bold text-balance text-snow">
-              Want a game like this <span className="text-gradient">for your brand?</span> We build them.
+              Liked the dash? <span className="text-gradient">Our full games</span> are on the way.
             </p>
           </div>
           <div className="shrink-0">
-            <Button href="#contact" size="lg">
-              Let&apos;s talk
+            <Button href="#games" size="lg">
+              See our games
             </Button>
           </div>
         </div>

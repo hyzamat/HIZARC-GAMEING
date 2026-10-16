@@ -62,12 +62,12 @@ export function CareersBand({ className }: { className?: string }) {
                 See open roles
               </Button>
               <Button
-                href={contactHref('Publishing')}
+                href="#games"
                 variant="ghost"
                 size="lg"
                 className="w-full bg-ink-950/30 ring-white/35 hover:bg-ink-950/50 hover:ring-white/60 sm:w-auto"
               >
-                Pitch us your game
+                See what we're making
               </Button>
             </div>
           </Reveal>

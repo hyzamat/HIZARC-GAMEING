@@ -55,7 +55,7 @@ export function Stats() {
               </p>
             </Reveal>
             <AnimatedWords
-              text={'Built to be *played*\nby millions.'}
+              text={'Small studio,\n*big worlds.*'}
               className="font-display text-[clamp(1.75rem,6.8vw,3.2rem)] leading-[1.05] font-bold tracking-[-0.02em] text-balance text-snow"
             />
           </div>

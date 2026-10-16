@@ -6,11 +6,11 @@ import { site, type ContactTopic } from '@/config/site'
 import { useFinePointer } from '@/hooks/useMediaQuery'
 import { celebrate, centerOf } from '@/lib/celebrate'
 import { cn } from '@/lib/cn'
-import { budgetRanges, contactDelivery, EMAIL_RE, MESSAGE_MAX, MESSAGE_MIN, sendContact, topicNeedsBudget, type ContactPayload, type ContactResult } from '@/lib/contact'
+import { contactDelivery, EMAIL_RE, MESSAGE_MAX, MESSAGE_MIN, sendContact, type ContactPayload, type ContactResult } from '@/lib/contact'
 import { NAV_OFFSET, scrollToTarget } from '@/lib/scroll'
 import { playSfx } from '@/lib/sfx'
 import { ChamferFrame } from './ChamferFrame'
-import { SelectField, TextAreaField, TextField } from './Fields'
+import { TextAreaField, TextField } from './Fields'
 import { SignalMeter } from './SignalMeter'
 import { SubmitButton, type SubmitStatus } from './SubmitButton'
 import { SuccessPanel } from './SuccessPanel'
@@ -22,15 +22,15 @@ import { useTopicDeepLink, type TopicLinkSource } from './useTopicDeepLink'
 /*  Form model + validation                                         */
 /* ---------------------------------------------------------------- */
 
-type Values = { name: string; email: string; company: string; budget: string; message: string }
+type Values = { name: string; email: string; company: string; message: string }
 type RequiredKey = 'name' | 'email' | 'message'
 type Errors = Partial<Record<RequiredKey, string>>
 
-const EMPTY: Values = { name: '', email: '', company: '', budget: '', message: '' }
+const EMPTY: Values = { name: '', email: '', company: '', message: '' }
 const REQUIRED: readonly RequiredKey[] = ['name', 'email', 'message']
 const FIELD_LABEL: Record<RequiredKey, string> = { name: 'name', email: 'email', message: 'message' }
 
-const DEFAULT_TOPIC: ContactTopic = 'Partnership'
+const DEFAULT_TOPIC: ContactTopic = 'Business'
 /** Keep the "Sending…" state on screen long enough to read, even when delivery is instant. */
 const MIN_SENDING_MS = 750
 /** How long the button shows "Sent ✓" before the form hands over to the success panel. */
@@ -165,7 +165,6 @@ export function ContactForm({ className }: { className?: string }) {
     name: `${uid}-name`,
     email: `${uid}-email`,
     company: `${uid}-company`,
-    budget: `${uid}-budget`,
     message: `${uid}-message`,
     honeypot: `${uid}-website`,
   }
@@ -279,7 +278,7 @@ export function ContactForm({ className }: { className?: string }) {
     const next = { ...values, [key]: value }
     setValues(next)
     // Clear an error the moment it's fixed (new errors only appear on blur / submit).
-    if (key !== 'company' && key !== 'budget' && errors[key] && !validateField(key, next)) {
+    if (key !== 'company' && errors[key] && !validateField(key, next)) {
       setErrors((e) => ({ ...e, [key]: undefined }))
     }
   }
@@ -323,7 +322,6 @@ export function ContactForm({ className }: { className?: string }) {
       email: values.email.trim(),
       company: values.company.trim(),
       topic,
-      budget: topicNeedsBudget(topic) ? values.budget : '',
       message: values.message.trim(),
     }
 
@@ -383,7 +381,6 @@ export function ContactForm({ className }: { className?: string }) {
 
   /* ---------------- derived ---------------- */
 
-  const needsBudget = topicNeedsBudget(topic)
   const checks = [true, values.name.trim() !== '', EMAIL_RE.test(values.email.trim()), values.message.trim().length >= MESSAGE_MIN]
   const level = checks.filter(Boolean).length
   const ready = level === checks.length
@@ -546,36 +543,11 @@ export function ContactForm({ className }: { className?: string }) {
                       className="sm:col-span-2"
                     />
                   </div>
-
-                  <AnimatePresence initial={false}>
-                    {needsBudget && (
-                      <motion.div
-                        key="budget"
-                        initial={{ height: 0, opacity: 0, overflow: 'hidden' }}
-                        animate={{ height: 'auto', opacity: 1, transitionEnd: { overflow: 'visible' } }}
-                        exit={{ height: 0, opacity: 0, overflow: 'hidden' }}
-                        transition={{ duration: 0.45, ease: EASE_OUT }}
-                      >
-                        <div className="pt-4">
-                          <SelectField
-                            id={ids.budget}
-                            name="budget"
-                            label="Budget range"
-                            value={values.budget}
-                            onValueChange={setField('budget')}
-                            options={budgetRanges}
-                            placeholder="Select a range"
-                            optional
-                          />
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </motion.div>
 
                 {/* 03 — message */}
                 <motion.div variants={rowVariants} className="mt-8">
-                  <StepLabel index="03">The brief</StepLabel>
+                  <StepLabel index="03">Your message</StepLabel>
                   <TextAreaField
                     ref={messageRef}
                     id={ids.message}

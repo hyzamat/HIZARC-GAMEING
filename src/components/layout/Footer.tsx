@@ -18,7 +18,7 @@ import { displayHost, externalProps, inertIfPlaceholder, navIndex, visibleSocial
 const studioLinks = [
   { label: 'Careers', href: contactHref('Careers') },
   { label: 'Press kit', href: contactHref('Press & Media') },
-  { label: 'Partner with us', href: contactHref('Partnership') },
+  { label: 'Business enquiries', href: contactHref('Business') },
   { label: 'Player support', href: contactHref('Player Support') },
 ] as const
 
@@ -160,7 +160,7 @@ export function Footer() {
             </div>
 
             <p className="mt-6 max-w-[36ch] text-[1rem] leading-relaxed text-mist">
-              Original worlds and co-developed games for mobile, PC, web and XR, built in Unity and Unreal Engine.
+              Our own open-world games for Android, iOS and PC, made in Calicut, Kerala.
             </p>
 
             <a

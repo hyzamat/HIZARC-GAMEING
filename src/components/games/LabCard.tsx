@@ -1,20 +1,24 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { EASE_OUT } from '@/components/ui/Reveal'
+import { upcomingGames } from '@/data/games'
 import { cn } from '@/lib/cn'
 import { GRID_LAYOUT_SPRING } from './shared'
 
-type PartnerCardProps = {
+type LabCardProps = {
   revealed: boolean
   delay: number
   className?: string
 }
 
+/** "DEPTH CITY 2, Born to Drive 2 and …" — the titles from the Upcoming section. */
+const nextUp = new Intl.ListFormat('en', { type: 'conjunction' }).format(upcomingGames.map((g) => g.title))
+
 /**
- * The last slot of the library: an open invitation to build the next title together.
+ * The last slot of the library: what is in development next, linking to #upcoming.
  * Same footprint and entrance as a game card so the grid / rail always ends cleanly.
  */
-export function PartnerCard({ revealed, delay, className }: PartnerCardProps) {
+export function LabCard({ revealed, delay, className }: LabCardProps) {
   return (
     <motion.li
       layout
@@ -37,7 +41,7 @@ export function PartnerCard({ revealed, delay, className }: PartnerCardProps) {
 
         <p className="flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.22em] text-haze uppercase">
           <span className="size-1.5 animate-pulse-soft rounded-full bg-volt" />
-          Open slot
+          In the lab
         </p>
 
         {/* emblem: dashed orbit + plus */}
@@ -51,12 +55,12 @@ export function PartnerCard({ revealed, delay, className }: PartnerCardProps) {
         </div>
 
         <div className="mt-auto">
-          <h3 className="font-display text-[1.3rem] leading-tight font-bold tracking-[-0.01em] text-snow sm:text-[1.4rem]">Your game, next.</h3>
+          <h3 className="font-display text-[1.3rem] leading-tight font-bold tracking-[-0.01em] text-snow sm:text-[1.4rem]">More worlds coming.</h3>
           <p className="mt-2 text-sm leading-relaxed text-mist">
-            Got an IP, a brand or a wild idea? We co-develop and publish with partners worldwide.
+            {nextUp} {upcomingGames.length === 1 ? 'is' : 'are'} already in development at the studio.
           </p>
-          <Button href="#contact" variant="ghost" className="mt-5 w-full sm:w-auto">
-            Start a project
+          <Button href="#upcoming" variant="ghost" className="mt-5 w-full sm:w-auto">
+            See what&apos;s next
           </Button>
         </div>
       </article>

@@ -11,8 +11,6 @@ export type ContactPayload = {
   email: string
   company: string
   topic: ContactTopic
-  /** Budget range — only meaningful for business topics (see `topicNeedsBudget`), '' otherwise. */
-  budget: string
   message: string
 }
 
@@ -28,21 +26,11 @@ export const MESSAGE_MAX = 2000
 /** Pragmatic email check: something@something.tld, no spaces. */
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@.]{2,}$/
 
-export const budgetRanges = ['< $10k', '$10k – $50k', '$50k – $150k', '$150k+', 'Not sure yet'] as const
-export type BudgetRange = (typeof budgetRanges)[number]
-
-const BUDGET_TOPICS: readonly ContactTopic[] = ['Partnership', 'Co-development', 'Publishing']
-
-/** Business enquiries get the optional budget range field. */
-export function topicNeedsBudget(topic: ContactTopic) {
-  return BUDGET_TOPICS.includes(topic)
-}
-
 /* ---------------------------------------------------------------- */
 /*  Deep links                                                      */
 /* ---------------------------------------------------------------- */
 
-/** 'Press & Media' -> 'press-media', 'Co-development' -> 'co-development'. */
+/** 'Press & Media' -> 'press-media', 'Player Support' -> 'player-support'. */
 export function topicSlug(topic: string) {
   return topic
     .toLowerCase()
@@ -109,7 +97,6 @@ function cleanPayload(payload: ContactPayload): ContactPayload {
     name: wellFormed(payload.name),
     email: wellFormed(payload.email),
     company: wellFormed(payload.company),
-    budget: wellFormed(payload.budget),
     message: wellFormed(payload.message),
   }
 }
@@ -131,7 +118,6 @@ function mailtoBody(payload: ContactPayload, message: string) {
     `Email: ${payload.email}`,
     `Company / studio: ${payload.company || '—'}`,
     `Topic: ${payload.topic}`,
-    ...(payload.budget || topicNeedsBudget(payload.topic) ? [`Budget range: ${payload.budget || 'Not specified'}`] : []),
     '',
     message,
     '',
@@ -199,7 +185,7 @@ function googleFormBody(payload: ContactPayload) {
   const body = new URLSearchParams({ fvv: '1', pageHistory: '0' })
   body.set(fields.name, payload.name)
   body.set(fields.email, payload.email)
-  // The whole mail body (name, email, topic, company, budget, message) so one cell holds the full context.
+  // The whole mail body (name, email, topic, company, message) so one cell holds the full context.
   body.set(fields.message, mailtoBody(payload, payload.message))
   body.set(`${fields.date}_year`, date.year)
   body.set(`${fields.date}_month`, date.month)
@@ -278,7 +264,6 @@ export async function sendContact(input: ContactPayload): Promise<ContactResult>
         email: payload.email,
         company: payload.company,
         topic: payload.topic,
-        budget: payload.budget,
         message: payload.message,
         _subject: contactSubject(payload),
       }),
