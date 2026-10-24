@@ -13,6 +13,7 @@
 ## Games
 
 - [DEPTH CITY](https://depthcity.hizarc.com/): open-world city building game with an avatar Mayor mode and war, for Android, iOS and PC. Coming soon. Made by HIZARC Games in Unity. Instagram: https://www.instagram.com/depthcitygame/
+- Stone Play: a paid stone-stacking game for Android and iOS (no ads, no in-app purchases). Privacy policy: https://hizarc.com/stoneplay/privacy-policy/
 - Born to Drive: realistic open-world driving game on the hill roads of Kerala's Western Ghats; cars, buses, trucks and off-roaders with real physics and damage. Android, iOS and PC. Coming soon. Made in Unity.
 
 ## In development

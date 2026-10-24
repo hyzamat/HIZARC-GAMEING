@@ -90,12 +90,15 @@ async function main() {
   if (!html.includes('HIZARC')) fail('the final HTML does not mention HIZARC')
   writeFileSync(htmlPath, html)
 
+  // the home page plus the static pages served straight from public/ (game privacy policies)
+  const pages = [canonical, new URL('/stoneplay/privacy-policy/', canonical).href]
+  const urls = pages.map((loc) => `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastModified()}</lastmod>
+  </url>`)
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${canonical}</loc>
-    <lastmod>${lastModified()}</lastmod>
-  </url>
+${urls.join('\n')}
 </urlset>
 `
   writeFileSync(resolve(distDir, 'sitemap.xml'), sitemap)
