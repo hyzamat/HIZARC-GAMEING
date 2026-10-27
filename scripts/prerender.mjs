@@ -91,7 +91,7 @@ async function main() {
   writeFileSync(htmlPath, html)
 
   // the home page plus the static pages served straight from public/ (game privacy policies)
-  const pages = [canonical, ...['/stoneplay/privacy-policy/', '/stoneplay/free/privacy-policy/'].map((path) => new URL(path, canonical).href)]
+  const pages = [canonical, ...['/stoneplay/privacy-policy/', '/stoneplay/free/privacy-policy/', '/kallu/privacypolicy/'].map((path) => new URL(path, canonical).href)]
   const urls = pages.map((loc) => `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastModified()}</lastmod>
